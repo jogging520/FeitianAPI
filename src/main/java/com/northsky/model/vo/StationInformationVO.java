@@ -12,7 +12,7 @@ public class StationInformationVO
 
     private String title;
 
-    private Integer logoMediaId;
+    private String logoMedia;
 
     private String description;
     
@@ -58,16 +58,6 @@ public class StationInformationVO
         this.title = title == null ? null : title.trim();
     }
 
-    public Integer getLogoMediaId() 
-    {
-        return logoMediaId;
-    }
-
-    public void setLogoMediaId(Integer logoMediaId)
-    {
-        this.logoMediaId = logoMediaId;
-    }
-
     public String getDescription()
     {
         return description;
@@ -86,5 +76,15 @@ public class StationInformationVO
 	public void setChannels(List<ChannelInformationVO> channels) 
 	{
 		this.channels = channels;
+	}
+
+	public String getLogoMedia() 
+	{
+		return logoMedia;
+	}
+
+	public void setLogoMedia(String logoMedia)
+	{
+		this.logoMedia = logoMedia;
 	}
 }
