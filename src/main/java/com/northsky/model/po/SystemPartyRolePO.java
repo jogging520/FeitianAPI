@@ -2,12 +2,12 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class SystemGrant {
-    private Integer grantId;
+public class SystemPartyRolePO {
+    private Integer partyRoleId;
+
+    private Integer partyId;
 
     private Integer roleId;
-
-    private Integer privilegeId;
 
     private Integer status;
 
@@ -17,12 +17,20 @@ public class SystemGrant {
 
     private String description;
 
-    public Integer getGrantId() {
-        return grantId;
+    public Integer getPartyRoleId() {
+        return partyRoleId;
     }
 
-    public void setGrantId(Integer grantId) {
-        this.grantId = grantId;
+    public void setPartyRoleId(Integer partyRoleId) {
+        this.partyRoleId = partyRoleId;
+    }
+
+    public Integer getPartyId() {
+        return partyId;
+    }
+
+    public void setPartyId(Integer partyId) {
+        this.partyId = partyId;
     }
 
     public Integer getRoleId() {
@@ -31,14 +39,6 @@ public class SystemGrant {
 
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
-    }
-
-    public Integer getPrivilegeId() {
-        return privilegeId;
-    }
-
-    public void setPrivilegeId(Integer privilegeId) {
-        this.privilegeId = privilegeId;
     }
 
     public Integer getStatus() {

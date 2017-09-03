@@ -2,12 +2,12 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class SystemPartyRole {
-    private Integer partyRoleId;
+public class ChannelProgrammeRelationPO {
+    private Integer channelProgrammeId;
 
-    private Integer partyId;
+    private Integer channelId;
 
-    private Integer roleId;
+    private Integer programmeId;
 
     private Integer status;
 
@@ -17,28 +17,28 @@ public class SystemPartyRole {
 
     private String description;
 
-    public Integer getPartyRoleId() {
-        return partyRoleId;
+    public Integer getChannelProgrammeId() {
+        return channelProgrammeId;
     }
 
-    public void setPartyRoleId(Integer partyRoleId) {
-        this.partyRoleId = partyRoleId;
+    public void setChannelProgrammeId(Integer channelProgrammeId) {
+        this.channelProgrammeId = channelProgrammeId;
     }
 
-    public Integer getPartyId() {
-        return partyId;
+    public Integer getChannelId() {
+        return channelId;
     }
 
-    public void setPartyId(Integer partyId) {
-        this.partyId = partyId;
+    public void setChannelId(Integer channelId) {
+        this.channelId = channelId;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public Integer getProgrammeId() {
+        return programmeId;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setProgrammeId(Integer programmeId) {
+        this.programmeId = programmeId;
     }
 
     public Integer getStatus() {

@@ -2,14 +2,18 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class MediaType {
-    private Integer mediaTypeId;
+public class ProgrammeInformationPO {
+    private Integer programmeId;
 
     private String name;
 
     private String category;
 
     private String type;
+
+    private String title;
+
+    private Integer snapshotMediaId;
 
     private Integer status;
 
@@ -19,12 +23,12 @@ public class MediaType {
 
     private String description;
 
-    public Integer getMediaTypeId() {
-        return mediaTypeId;
+    public Integer getProgrammeId() {
+        return programmeId;
     }
 
-    public void setMediaTypeId(Integer mediaTypeId) {
-        this.mediaTypeId = mediaTypeId;
+    public void setProgrammeId(Integer programmeId) {
+        this.programmeId = programmeId;
     }
 
     public String getName() {
@@ -49,6 +53,22 @@ public class MediaType {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
+    public Integer getSnapshotMediaId() {
+        return snapshotMediaId;
+    }
+
+    public void setSnapshotMediaId(Integer snapshotMediaId) {
+        this.snapshotMediaId = snapshotMediaId;
     }
 
     public Integer getStatus() {

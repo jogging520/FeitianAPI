@@ -2,7 +2,7 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class SystemOrganization {
+public class SystemOrganizationPO {
     private Integer organizationId;
 
     private String name;

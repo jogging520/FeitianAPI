@@ -2,8 +2,8 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class SystemParameter {
-    private Integer parameterId;
+public class ChannelInformationPO {
+    private Integer channelId;
 
     private String name;
 
@@ -11,9 +11,9 @@ public class SystemParameter {
 
     private String type;
 
-    private String attribute;
+    private String title;
 
-    private String value;
+    private Integer logoMediaId;
 
     private Integer status;
 
@@ -23,12 +23,12 @@ public class SystemParameter {
 
     private String description;
 
-    public Integer getParameterId() {
-        return parameterId;
+    public Integer getChannelId() {
+        return channelId;
     }
 
-    public void setParameterId(Integer parameterId) {
-        this.parameterId = parameterId;
+    public void setChannelId(Integer channelId) {
+        this.channelId = channelId;
     }
 
     public String getName() {
@@ -55,20 +55,20 @@ public class SystemParameter {
         this.type = type == null ? null : type.trim();
     }
 
-    public String getAttribute() {
-        return attribute;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAttribute(String attribute) {
-        this.attribute = attribute == null ? null : attribute.trim();
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
-    public String getValue() {
-        return value;
+    public Integer getLogoMediaId() {
+        return logoMediaId;
     }
 
-    public void setValue(String value) {
-        this.value = value == null ? null : value.trim();
+    public void setLogoMediaId(Integer logoMediaId) {
+        this.logoMediaId = logoMediaId;
     }
 
     public Integer getStatus() {

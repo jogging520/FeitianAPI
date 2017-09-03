@@ -2,14 +2,14 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class SystemRole {
-    private Integer roleId;
+public class MediaInformationDetailPO {
+    private Integer mediaDetailId;
 
-    private String name;
+    private Integer mediaId;
 
-    private String category;
+    private String attribute;
 
-    private String type;
+    private String value;
 
     private Integer status;
 
@@ -19,36 +19,36 @@ public class SystemRole {
 
     private String description;
 
-    public Integer getRoleId() {
-        return roleId;
+    public Integer getMediaDetailId() {
+        return mediaDetailId;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setMediaDetailId(Integer mediaDetailId) {
+        this.mediaDetailId = mediaDetailId;
     }
 
-    public String getName() {
-        return name;
+    public Integer getMediaId() {
+        return mediaId;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setMediaId(Integer mediaId) {
+        this.mediaId = mediaId;
     }
 
-    public String getCategory() {
-        return category;
+    public String getAttribute() {
+        return attribute;
     }
 
-    public void setCategory(String category) {
-        this.category = category == null ? null : category.trim();
+    public void setAttribute(String attribute) {
+        this.attribute = attribute == null ? null : attribute.trim();
     }
 
-    public String getType() {
-        return type;
+    public String getValue() {
+        return value;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setValue(String value) {
+        this.value = value == null ? null : value.trim();
     }
 
     public Integer getStatus() {

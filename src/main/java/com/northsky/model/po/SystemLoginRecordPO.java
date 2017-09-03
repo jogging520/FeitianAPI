@@ -2,27 +2,29 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class SystemPartyOrganization {
-    private Integer partyOrganizationId;
+public class SystemLoginRecordPO {
+    private Long loginId;
 
     private Integer partyId;
+
+    private Integer roleId;
 
     private Integer organizationId;
 
     private Integer status;
 
-    private Date createTime;
+    private Date loginTime;
 
-    private Date statusTime;
+    private Date logoutTime;
 
     private String description;
 
-    public Integer getPartyOrganizationId() {
-        return partyOrganizationId;
+    public Long getLoginId() {
+        return loginId;
     }
 
-    public void setPartyOrganizationId(Integer partyOrganizationId) {
-        this.partyOrganizationId = partyOrganizationId;
+    public void setLoginId(Long loginId) {
+        this.loginId = loginId;
     }
 
     public Integer getPartyId() {
@@ -31,6 +33,14 @@ public class SystemPartyOrganization {
 
     public void setPartyId(Integer partyId) {
         this.partyId = partyId;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
     public Integer getOrganizationId() {
@@ -49,20 +59,20 @@ public class SystemPartyOrganization {
         this.status = status;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getLoginTime() {
+        return loginTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
     }
 
-    public Date getStatusTime() {
-        return statusTime;
+    public Date getLogoutTime() {
+        return logoutTime;
     }
 
-    public void setStatusTime(Date statusTime) {
-        this.statusTime = statusTime;
+    public void setLogoutTime(Date logoutTime) {
+        this.logoutTime = logoutTime;
     }
 
     public String getDescription() {

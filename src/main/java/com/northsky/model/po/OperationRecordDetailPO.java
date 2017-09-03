@@ -2,7 +2,7 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class OperationRecordDetail {
+public class OperationRecordDetailPO {
     private Long operationDetailId;
 
     private Long operationId;

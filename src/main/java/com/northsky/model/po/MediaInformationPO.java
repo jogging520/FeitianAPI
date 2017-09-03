@@ -2,7 +2,7 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class MediaInformation {
+public class MediaInformationPO {
     private Integer mediaId;
 
     private String category;

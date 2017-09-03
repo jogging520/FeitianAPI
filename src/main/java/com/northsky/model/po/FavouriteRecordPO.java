@@ -2,14 +2,16 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class MediaInformationDetail {
-    private Integer mediaDetailId;
+public class FavouriteRecordPO {
+    private Long favouriteId;
+
+    private Integer partyId;
 
     private Integer mediaId;
 
-    private String attribute;
+    private String type;
 
-    private String value;
+    private String last;
 
     private Integer status;
 
@@ -19,12 +21,20 @@ public class MediaInformationDetail {
 
     private String description;
 
-    public Integer getMediaDetailId() {
-        return mediaDetailId;
+    public Long getFavouriteId() {
+        return favouriteId;
     }
 
-    public void setMediaDetailId(Integer mediaDetailId) {
-        this.mediaDetailId = mediaDetailId;
+    public void setFavouriteId(Long favouriteId) {
+        this.favouriteId = favouriteId;
+    }
+
+    public Integer getPartyId() {
+        return partyId;
+    }
+
+    public void setPartyId(Integer partyId) {
+        this.partyId = partyId;
     }
 
     public Integer getMediaId() {
@@ -35,20 +45,20 @@ public class MediaInformationDetail {
         this.mediaId = mediaId;
     }
 
-    public String getAttribute() {
-        return attribute;
+    public String getType() {
+        return type;
     }
 
-    public void setAttribute(String attribute) {
-        this.attribute = attribute == null ? null : attribute.trim();
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
-    public String getValue() {
-        return value;
+    public String getLast() {
+        return last;
     }
 
-    public void setValue(String value) {
-        this.value = value == null ? null : value.trim();
+    public void setLast(String last) {
+        this.last = last == null ? null : last.trim();
     }
 
     public Integer getStatus() {

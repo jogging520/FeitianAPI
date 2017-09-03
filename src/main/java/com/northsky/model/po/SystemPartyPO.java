@@ -2,12 +2,12 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class SystemPrivilege {
-    private Integer privilegeId;
+public class SystemPartyPO {
+    private Integer partyId;
 
     private String name;
 
-    private String alias;
+    private String password;
 
     private String category;
 
@@ -21,12 +21,12 @@ public class SystemPrivilege {
 
     private String description;
 
-    public Integer getPrivilegeId() {
-        return privilegeId;
+    public Integer getPartyId() {
+        return partyId;
     }
 
-    public void setPrivilegeId(Integer privilegeId) {
-        this.privilegeId = privilegeId;
+    public void setPartyId(Integer partyId) {
+        this.partyId = partyId;
     }
 
     public String getName() {
@@ -37,12 +37,12 @@ public class SystemPrivilege {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getAlias() {
-        return alias;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias == null ? null : alias.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
     public String getCategory() {

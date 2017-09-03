@@ -2,14 +2,12 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class SystemPartyDetail {
-    private Integer partyDetailId;
+public class SystemPartyOrganizationPO {
+    private Integer partyOrganizationId;
 
     private Integer partyId;
 
-    private String attribute;
-
-    private String value;
+    private Integer organizationId;
 
     private Integer status;
 
@@ -19,12 +17,12 @@ public class SystemPartyDetail {
 
     private String description;
 
-    public Integer getPartyDetailId() {
-        return partyDetailId;
+    public Integer getPartyOrganizationId() {
+        return partyOrganizationId;
     }
 
-    public void setPartyDetailId(Integer partyDetailId) {
-        this.partyDetailId = partyDetailId;
+    public void setPartyOrganizationId(Integer partyOrganizationId) {
+        this.partyOrganizationId = partyOrganizationId;
     }
 
     public Integer getPartyId() {
@@ -35,20 +33,12 @@ public class SystemPartyDetail {
         this.partyId = partyId;
     }
 
-    public String getAttribute() {
-        return attribute;
+    public Integer getOrganizationId() {
+        return organizationId;
     }
 
-    public void setAttribute(String attribute) {
-        this.attribute = attribute == null ? null : attribute.trim();
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value == null ? null : value.trim();
+    public void setOrganizationId(Integer organizationId) {
+        this.organizationId = organizationId;
     }
 
     public Integer getStatus() {

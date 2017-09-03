@@ -2,18 +2,16 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class ChannelInformation {
-    private Integer channelId;
+public class SystemPrivilegePO {
+    private Integer privilegeId;
 
     private String name;
+
+    private String alias;
 
     private String category;
 
     private String type;
-
-    private String title;
-
-    private Integer logoMediaId;
 
     private Integer status;
 
@@ -23,12 +21,12 @@ public class ChannelInformation {
 
     private String description;
 
-    public Integer getChannelId() {
-        return channelId;
+    public Integer getPrivilegeId() {
+        return privilegeId;
     }
 
-    public void setChannelId(Integer channelId) {
-        this.channelId = channelId;
+    public void setPrivilegeId(Integer privilegeId) {
+        this.privilegeId = privilegeId;
     }
 
     public String getName() {
@@ -37,6 +35,14 @@ public class ChannelInformation {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias == null ? null : alias.trim();
     }
 
     public String getCategory() {
@@ -53,22 +59,6 @@ public class ChannelInformation {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
-
-    public Integer getLogoMediaId() {
-        return logoMediaId;
-    }
-
-    public void setLogoMediaId(Integer logoMediaId) {
-        this.logoMediaId = logoMediaId;
     }
 
     public Integer getStatus() {
