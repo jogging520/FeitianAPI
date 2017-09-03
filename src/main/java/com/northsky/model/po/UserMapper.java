@@ -1,4 +1,4 @@
-package com.northsky.domain;
+package com.northsky.model.po;
 
 import org.apache.ibatis.annotations.*;
 

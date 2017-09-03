@@ -1,4 +1,4 @@
-package com.northsky.domain;
+package com.northsky.model.po;
 
 public class User {
 

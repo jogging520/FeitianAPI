@@ -1,8 +1,8 @@
-package com.northsky.domain;
+package com.northsky.model.po;
 
 import java.util.Date;
 
-public class ImageLocation {
+public class Media {
 
 	int media_id  ;
 	String  category ;
@@ -10,6 +10,11 @@ public class ImageLocation {
 	String store_type ;
 	String location ;
 	long size ;
+	String type ; 
+	int status ;  
+	Date create_time;
+	Date status_time ;
+	
 	public int getMedia_id() {
 		return media_id;
 	}
@@ -70,8 +75,5 @@ public class ImageLocation {
 	public void setStatus_time(Date status_time) {
 		this.status_time = status_time;
 	}
-	String type ; 
-	int status ; 
-	Date create_time;
-	Date status_time ;
+	
 }

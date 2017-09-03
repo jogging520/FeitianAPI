@@ -3,15 +3,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.northsky.Application;
-import com.northsky.domain.ImageLocation;
-import com.northsky.domain.ImageLocationMapper;
-import com.northsky.domain.User;
-import com.northsky.domain.UserMapper;
+import com.northsky.model.po.Media;
+import com.northsky.model.po.MediaMapper;
+import com.northsky.model.po.UserMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -21,7 +19,7 @@ public class MybatisTest {
 	@Autowired
 	private UserMapper userMapper;
 	@Autowired
-	private ImageLocationMapper imageMapper;
+	private MediaMapper mediaMapper;
 
 //	@Test
 //	@Rollback
@@ -32,8 +30,8 @@ public class MybatisTest {
 //	}
 	@Test
 	public void findById() {
-		ImageLocation image = imageMapper.findByid(100000);
-		Assert.assertEquals("../images/guangdian/lvyou-heilongjiang.png",image.getLocation());
+		Media media = mediaMapper.findByid(100000);
+		Assert.assertEquals("../images/guangdian/lvyou-heilongjiang.png",media.getLocation());
 	}
 
 }
