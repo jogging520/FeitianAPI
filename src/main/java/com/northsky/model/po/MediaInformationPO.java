@@ -5,17 +5,17 @@ import java.util.Date;
 public class MediaInformationPO {
     private Integer mediaId;
 
+    private String name;
+
     private String category;
 
-    private String mediaName;
+    private String type;
 
     private String storeType;
 
-    private String location;
+    private String locaion;
 
     private Long size;
-
-    private String type;
 
     private Integer status;
 
@@ -23,12 +23,22 @@ public class MediaInformationPO {
 
     private Date statusTime;
 
+    private String description;
+
     public Integer getMediaId() {
         return mediaId;
     }
 
     public void setMediaId(Integer mediaId) {
         this.mediaId = mediaId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getCategory() {
@@ -39,12 +49,12 @@ public class MediaInformationPO {
         this.category = category == null ? null : category.trim();
     }
 
-    public String getMediaName() {
-        return mediaName;
+    public String getType() {
+        return type;
     }
 
-    public void setMediaName(String mediaName) {
-        this.mediaName = mediaName == null ? null : mediaName.trim();
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
     public String getStoreType() {
@@ -55,12 +65,12 @@ public class MediaInformationPO {
         this.storeType = storeType == null ? null : storeType.trim();
     }
 
-    public String getLocation() {
-        return location;
+    public String getLocaion() {
+        return locaion;
     }
 
-    public void setLocation(String location) {
-        this.location = location == null ? null : location.trim();
+    public void setLocaion(String locaion) {
+        this.locaion = locaion == null ? null : locaion.trim();
     }
 
     public Long getSize() {
@@ -69,14 +79,6 @@ public class MediaInformationPO {
 
     public void setSize(Long size) {
         this.size = size;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
     }
 
     public Integer getStatus() {
@@ -101,5 +103,13 @@ public class MediaInformationPO {
 
     public void setStatusTime(Date statusTime) {
         this.statusTime = statusTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }
