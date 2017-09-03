@@ -3,7 +3,7 @@ package com.northsky.model.po;
 import java.util.Date;
 
 public class StationInformationPO {
-    private Integer stationId;
+    private Integer stationid;
 
     private String name;
 
@@ -24,19 +24,22 @@ public class StationInformationPO {
     private String description;
 
     public Integer getStationId() {
-        return stationId;
+        return stationid;
     }
 
-    public void setStationId(Integer stationId) {
-        this.stationId = stationId;
+    public void setStationid(Integer stationid) {
+    	
+    	System.out.println("----+++++" + stationid);
+        this.stationid = stationid;
     }
 
     public String getName() {
+    	
         return name;
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    	this.name = name == null ? null : name.trim();
     }
 
     public String getCategory() {
@@ -63,7 +66,7 @@ public class StationInformationPO {
         this.title = title == null ? null : title.trim();
     }
 
-    public Integer getLogoMediaId() {
+    public int getLogoMediaId() {
         return logoMediaId;
     }
 

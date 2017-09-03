@@ -6,9 +6,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.northsky.Application;
-import com.northsky.dao.ChannelInformationMapper;
-import com.northsky.dao.StationInformationMapper;
-import com.northsky.model.po.ChannelInformationPO;
+import com.northsky.model.vo.PlayListVO;
+import com.northsky.service.PlayListService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,10 +17,10 @@ public class MybatisTest {
 
 //	@Autowired
 //	private UserMapper userMapper;
-@Autowired
-private StationInformationMapper stationmapper;
-@Autowired
-private ChannelInformationMapper channelmapper;
+//@Autowired
+//private StationInformationMapper stationmapper;
+//@Autowired
+//private ChannelInformationMapper channelmapper;
 
 //	private MediaMapper mediaMapper;
  
@@ -32,14 +31,18 @@ private ChannelInformationMapper channelmapper;
 //		User u = userMapper.findByName("AAA");
 //		Assert.assertEquals(20, u.getAge().intValue());
 //	}
+	@Autowired
+	private PlayListService  playService;
 	@Test
 	public void findById() {
 //		 StationInformationPO stationPO = stationmapper.findAll();
 //		 System.out.println(stationPO.getCategory());
 		
-		ChannelInformationPO cpo =channelmapper.findAll();
-		 System.out.println(cpo.getName());
+//		ChannelInformationPO cpo =channelmapper.findAll();
+//		 System.out.println(cpo.getName());
 //		Media media = mediaMapper.findByid(100000);
+		PlayListVO playvo =playService.getPlaylist();
+		System.out.println(playvo.getStations().get(1).getCategory());
 //		Assert.assertEquals("../images/guangdian/lvyou-heilongjiang.png",media.getLocation());
 	}
 

@@ -8,20 +8,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
-import com.northsky.service.StationService;
 
 @Controller
-public class StatonController {
-	@Autowired
-	private StationService statinService;
+public class StationController {
+	//@Autowired
+	//private StationService statinService;
 	private Logger logger = Logger.getLogger(getClass());
 	
 	@RequestMapping(value="/getStationAll",method = RequestMethod.GET )
     @ResponseBody
     public JSONObject  getMediaAll(){
         
-		JSONObject stationjason = statinService.findAll();
+		//JSONObject stationjason = statinService.findAll();
     	
-		return stationjason; 
+		//return stationjason; 
+		
+		return null;
     }
 }
