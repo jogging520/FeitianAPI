@@ -9,6 +9,11 @@ public class ProgrammeInformationVO
     private String type;
 
     private String title;
+    
+    /**
+     * 根据MediaInformation中对应的location组装
+     */
+    private String Media;
 
     /**
      * 根据MediaInformation中对应的location组装
@@ -47,6 +52,26 @@ public class ProgrammeInformationVO
         this.type = type == null ? null : type.trim();
     }
 
+	public String getMedia() 
+	{
+		return Media;
+	}
+
+	public void setMedia(String media) 
+	{
+		Media = media;
+	}
+
+	public String getSnapshotMedia() 
+	{
+		return snapshotMedia;
+	}
+
+	public void setSnapshotMedia(String snapshotMedia) 
+	{
+		this.snapshotMedia = snapshotMedia;
+	}
+
     public String getTitle() 
     {
         return title;
@@ -66,14 +91,4 @@ public class ProgrammeInformationVO
     {
         this.description = description == null ? null : description.trim();
     }
-
-	public String getSnapshotMedia() 
-	{
-		return snapshotMedia;
-	}
-
-	public void setSnapshotMedia(String snapshotMedia) 
-	{
-		this.snapshotMedia = snapshotMedia;
-	}
 }

@@ -12,6 +12,8 @@ public class ProgrammeInformationPO {
     private String type;
 
     private String title;
+    
+    private Integer MediaId;
 
     private Integer snapshotMediaId;
 
@@ -62,6 +64,14 @@ public class ProgrammeInformationPO {
     public void setTitle(String title) {
         this.title = title == null ? null : title.trim();
     }
+
+	public Integer getMediaId() {
+		return MediaId;
+	}
+
+	public void setMediaId(Integer mediaId) {
+		MediaId = mediaId;
+	}
 
     public Integer getSnapshotMediaId() {
         return snapshotMediaId;
