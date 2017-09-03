@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,20 +6,25 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.northsky.Application;
-import com.northsky.model.po.Media;
-import com.northsky.model.po.MediaMapper;
-import com.northsky.model.po.UserMapper;
+import com.northsky.dao.ChannelInformationMapper;
+import com.northsky.dao.StationInformationMapper;
+import com.northsky.model.po.ChannelInformationPO;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @Transactional
 public class MybatisTest {
 
-	@Autowired
-	private UserMapper userMapper;
-	@Autowired
-	private MediaMapper mediaMapper;
+//	@Autowired
+//	private UserMapper userMapper;
+@Autowired
+private StationInformationMapper stationmapper;
+@Autowired
+private ChannelInformationMapper channelmapper;
 
+//	private MediaMapper mediaMapper;
+ 
 //	@Test
 //	@Rollback
 //	public void findByName() throws Exception {
@@ -30,8 +34,13 @@ public class MybatisTest {
 //	}
 	@Test
 	public void findById() {
-		Media media = mediaMapper.findByid(100000);
-		Assert.assertEquals("../images/guangdian/lvyou-heilongjiang.png",media.getLocation());
+//		 StationInformationPO stationPO = stationmapper.findAll();
+//		 System.out.println(stationPO.getCategory());
+		
+		ChannelInformationPO cpo =channelmapper.findAll();
+		 System.out.println(cpo.getName());
+//		Media media = mediaMapper.findByid(100000);
+//		Assert.assertEquals("../images/guangdian/lvyou-heilongjiang.png",media.getLocation());
 	}
 
 }
