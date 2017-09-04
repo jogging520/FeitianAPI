@@ -1,5 +1,7 @@
 package com.northsky.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.northsky.model.po.MediaInformationDetailPO;
@@ -14,6 +16,8 @@ public interface MediaInformationDetailPOMapper {
 
     MediaInformationDetailPO selectByPrimaryKey(Integer mediaDetailId);
 
+    List<MediaInformationDetailPO> selectByMediaId(Integer mediaId);
+    
     int updateByPrimaryKeySelective(MediaInformationDetailPO record);
 
     int updateByPrimaryKey(MediaInformationDetailPO record);

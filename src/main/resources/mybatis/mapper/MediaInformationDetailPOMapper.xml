@@ -20,6 +20,12 @@
     from media_information_detail
     where media_detail_id = #{mediaDetailId,jdbcType=INTEGER}
   </select>
+  <select id="selectByMediaId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from media_information_detail
+    where media_id = #{0}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from media_information_detail
     where media_detail_id = #{mediaDetailId,jdbcType=INTEGER}

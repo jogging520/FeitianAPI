@@ -2,6 +2,8 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
+import com.northsky.model.vo.MediaInformationVO;
+
 public class MediaInformationPO {
     private Integer mediaId;
 
@@ -111,5 +113,28 @@ public class MediaInformationPO {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+    
+    public MediaInformationVO convertToVO()
+    {
+    	MediaInformationVO mediaInformationVO = null;
+    	
+    	try
+    	{
+    		mediaInformationVO = new MediaInformationVO();
+    		mediaInformationVO.setName(this.getName());
+    		mediaInformationVO.setCategory(this.getCategory());
+    		mediaInformationVO.setType(this.getType());
+    		mediaInformationVO.setStoreType(this.getStoreType());
+    		mediaInformationVO.setLocaion(this.getLocaion());
+    		mediaInformationVO.setSize(this.getSize());
+    		mediaInformationVO.setDescription(this.getDescription());
+    	}
+    	catch(Exception exception)
+    	{
+    		exception.printStackTrace();
+    	}
+    	
+    	return mediaInformationVO;
     }
 }
