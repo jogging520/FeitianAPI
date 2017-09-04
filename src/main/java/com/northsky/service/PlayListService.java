@@ -7,12 +7,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.northsky.dao.ChannelInformationMapper;
-import com.northsky.dao.ChannelProgrammeRelationMapper;
-import com.northsky.dao.MediaInformationMapper;
-import com.northsky.dao.ProgrammeInformationMapper;
-import com.northsky.dao.StationChannelRelationMapper;
-import com.northsky.dao.StationInformationMapper;
+import com.northsky.dao.ChannelInformationPOMapper;
+import com.northsky.dao.ChannelProgrammeRelationPOMapper;
+import com.northsky.dao.MediaInformationPOMapper;
+import com.northsky.dao.ProgrammeInformationPOMapper;
+import com.northsky.dao.StationChannelRelationPOMapper;
+import com.northsky.dao.StationInformationPOMapper;
 import com.northsky.model.po.ChannelInformationPO;
 import com.northsky.model.po.ChannelProgrammeRelationPO;
 import com.northsky.model.po.MediaInformationPO;
@@ -30,17 +30,17 @@ public class PlayListService
 	private Logger logger = Logger.getLogger(getClass());
 	
 	@Autowired
-	private ChannelInformationMapper channelInformationMapper;
+	private ChannelInformationPOMapper channelInformationPOMapper;
 	@Autowired
-	private ChannelProgrammeRelationMapper channelProgrammeRelationMapper;
+	private ChannelProgrammeRelationPOMapper channelProgrammeRelationPOMapper;
 	@Autowired
-	private MediaInformationMapper mediaInformationMapper;	
+	private MediaInformationPOMapper mediaInformationPOMapper;	
 	@Autowired
-	private ProgrammeInformationMapper programmeInformationMapper;
+	private ProgrammeInformationPOMapper programmeInformationPOMapper;
 	@Autowired
-	private StationChannelRelationMapper stationChannelRelationMapper;
+	private StationChannelRelationPOMapper stationChannelRelationPOMapper;
 	@Autowired
-	private StationInformationMapper stationInformationMapper;
+	private StationInformationPOMapper stationInformationPOMapper;
 	
 	private static final int status = 1;
 
@@ -62,25 +62,25 @@ public class PlayListService
 				
 		try
 		{
-			if(stationInformationMapper == null)
+			if(stationInformationPOMapper == null)
 				return playListVO;
 						
-			if(stationChannelRelationMapper == null)
+			if(stationChannelRelationPOMapper == null)
 				return playListVO;
 			
-			if(channelInformationMapper == null)
+			if(channelInformationPOMapper == null)
 				return playListVO;
 			
-			if(channelProgrammeRelationMapper == null)
+			if(channelProgrammeRelationPOMapper == null)
 				return playListVO;
 			
-			if(programmeInformationMapper == null)
+			if(programmeInformationPOMapper == null)
 				return playListVO;
 			
 			playListVO = new PlayListVO();
 			
 			stationInformationVOs = new ArrayList<StationInformationVO>();
-			stationInformationPOs = stationInformationMapper.getAllByStatus(status);
+			stationInformationPOs = stationInformationPOMapper.getAllByStatus(status);
 			playListVO.setStations(stationInformationVOs);	
 			
 			for(StationInformationPO stationInformationPO: stationInformationPOs)
@@ -88,23 +88,23 @@ public class PlayListService
 				stationInformationVO = stationInformationPO.converToVO();
 				stationInformationVO.setLogoMedia(getMediaLocation(stationInformationPO.getLogoMediaId()));
 				
-				stationChannelRelationPOs = stationChannelRelationMapper.findByStationId(stationInformationPO.getStationId());
+				stationChannelRelationPOs = stationChannelRelationPOMapper.findByStationId(stationInformationPO.getStationId());
 				channelInformationVOs = new ArrayList<ChannelInformationVO>();
 				stationInformationVO.setChannels(channelInformationVOs);
 				
 				for(StationChannelRelationPO stationChannelRelationPO: stationChannelRelationPOs)
 				{
-					channelInformationPO = channelInformationMapper.findByChannelId(stationChannelRelationPO.getChannelId());
+					channelInformationPO = channelInformationPOMapper.selectByPrimaryKey(stationChannelRelationPO.getChannelId());
 					channelInformationVO = channelInformationPO.converToVO();
 					channelInformationVO.setLogoMedia(getMediaLocation(channelInformationPO.getLogoMediaId()));
 					
-					channelProgrammeRelationPOs = channelProgrammeRelationMapper.findByChannelId(channelInformationPO.getChannelId());
+					channelProgrammeRelationPOs = channelProgrammeRelationPOMapper.findByChannelId(channelInformationPO.getChannelId());
 					programmeInformationVOs = new ArrayList<ProgrammeInformationVO>();
 					channelInformationVO.setProgrammes(programmeInformationVOs);
 					
 					for(ChannelProgrammeRelationPO channelProgrammeRelationPO: channelProgrammeRelationPOs)
 					{
-						programmeInformationPO = programmeInformationMapper.findByProgrammeId(channelProgrammeRelationPO.getProgrammeId());
+						programmeInformationPO = programmeInformationPOMapper.selectByPrimaryKey(channelProgrammeRelationPO.getProgrammeId());
 						programmeInformationVO = programmeInformationPO.converToVO();
 						programmeInformationVO.setMedia(getMediaLocation(programmeInformationPO.getMediaId()));
 						programmeInformationVO.setSnapshotMedia(getMediaLocation(programmeInformationPO.getSnapshotMediaId()));
@@ -132,10 +132,10 @@ public class PlayListService
 		if(mediaId <= 0)
 			return null;
 		
-		if(mediaInformationMapper == null)
+		if(mediaInformationPOMapper == null)
 			return null;
 		
-		MediaInformationPO mediaInformationPO = mediaInformationMapper.findByid(mediaId);
+		MediaInformationPO mediaInformationPO = mediaInformationPOMapper.selectByPrimaryKey(mediaId);
 		
 		if(mediaInformationPO == null)
 			return null;
