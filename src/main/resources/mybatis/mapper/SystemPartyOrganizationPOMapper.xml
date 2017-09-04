@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.northsky.dao.SystemPartyOrganizationPOMapper">
+  <resultMap id="BaseResultMap" type="com.northsky.model.po.SystemPartyOrganizationPO">
+    <id column="party_organization_id" jdbcType="INTEGER" property="partyOrganizationId" />
+    <result column="party_id" jdbcType="INTEGER" property="partyId" />
+    <result column="organization_id" jdbcType="INTEGER" property="organizationId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status_time" jdbcType="TIMESTAMP" property="statusTime" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    party_organization_id, party_id, organization_id, status, create_time, status_time, 
+    description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from system_party_organization
+    where party_organization_id = #{partyOrganizationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_party_organization
+    where party_organization_id = #{partyOrganizationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.northsky.model.po.SystemPartyOrganizationPO">
+    insert into system_party_organization (party_organization_id, party_id, organization_id, 
+      status, create_time, status_time, 
+      description)
+    values (#{partyOrganizationId,jdbcType=INTEGER}, #{partyId,jdbcType=INTEGER}, #{organizationId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{statusTime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.northsky.model.po.SystemPartyOrganizationPO">
+    insert into system_party_organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyOrganizationId != null">
+        party_organization_id,
+      </if>
+      <if test="partyId != null">
+        party_id,
+      </if>
+      <if test="organizationId != null">
+        organization_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="statusTime != null">
+        status_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyOrganizationId != null">
+        #{partyOrganizationId,jdbcType=INTEGER},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="organizationId != null">
+        #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusTime != null">
+        #{statusTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.northsky.model.po.SystemPartyOrganizationPO">
+    update system_party_organization
+    <set>
+      <if test="partyId != null">
+        party_id = #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="organizationId != null">
+        organization_id = #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusTime != null">
+        status_time = #{statusTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where party_organization_id = #{partyOrganizationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.northsky.model.po.SystemPartyOrganizationPO">
+    update system_party_organization
+    set party_id = #{partyId,jdbcType=INTEGER},
+      organization_id = #{organizationId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status_time = #{statusTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR}
+    where party_organization_id = #{partyOrganizationId,jdbcType=INTEGER}
+  </update>
+</mapper>

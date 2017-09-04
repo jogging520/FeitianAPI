@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.northsky.dao.OperationRecordPOMapper">
+  <resultMap id="BaseResultMap" type="com.northsky.model.po.OperationRecordPO">
+    <id column="operation_id" jdbcType="BIGINT" property="operationId" />
+    <result column="party_id" jdbcType="INTEGER" property="partyId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="organization_id" jdbcType="INTEGER" property="organizationId" />
+    <result column="operation_type_id" jdbcType="INTEGER" property="operationTypeId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="finish_time" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    operation_id, party_id, role_id, organization_id, operation_type_id, status, start_time, 
+    finish_time, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from operation_record
+    where operation_id = #{operationId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from operation_record
+    where operation_id = #{operationId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.northsky.model.po.OperationRecordPO">
+    insert into operation_record (operation_id, party_id, role_id, 
+      organization_id, operation_type_id, status, 
+      start_time, finish_time, description
+      )
+    values (#{operationId,jdbcType=BIGINT}, #{partyId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, 
+      #{organizationId,jdbcType=INTEGER}, #{operationTypeId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.northsky.model.po.OperationRecordPO">
+    insert into operation_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="operationId != null">
+        operation_id,
+      </if>
+      <if test="partyId != null">
+        party_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="organizationId != null">
+        organization_id,
+      </if>
+      <if test="operationTypeId != null">
+        operation_type_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="finishTime != null">
+        finish_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="operationId != null">
+        #{operationId,jdbcType=BIGINT},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="organizationId != null">
+        #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="operationTypeId != null">
+        #{operationTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.northsky.model.po.OperationRecordPO">
+    update operation_record
+    <set>
+      <if test="partyId != null">
+        party_id = #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="organizationId != null">
+        organization_id = #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="operationTypeId != null">
+        operation_type_id = #{operationTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where operation_id = #{operationId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.northsky.model.po.OperationRecordPO">
+    update operation_record
+    set party_id = #{partyId,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=INTEGER},
+      organization_id = #{organizationId,jdbcType=INTEGER},
+      operation_type_id = #{operationTypeId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR}
+    where operation_id = #{operationId,jdbcType=BIGINT}
+  </update>
+</mapper>

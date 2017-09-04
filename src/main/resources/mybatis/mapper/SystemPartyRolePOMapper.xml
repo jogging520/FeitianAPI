@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.northsky.dao.SystemPartyRolePOMapper">
+  <resultMap id="BaseResultMap" type="com.northsky.model.po.SystemPartyRolePO">
+    <id column="party_role_id" jdbcType="INTEGER" property="partyRoleId" />
+    <result column="party_id" jdbcType="INTEGER" property="partyId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status_time" jdbcType="TIMESTAMP" property="statusTime" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    party_role_id, party_id, role_id, status, create_time, status_time, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from system_party_role
+    where party_role_id = #{partyRoleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_party_role
+    where party_role_id = #{partyRoleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.northsky.model.po.SystemPartyRolePO">
+    insert into system_party_role (party_role_id, party_id, role_id, 
+      status, create_time, status_time, 
+      description)
+    values (#{partyRoleId,jdbcType=INTEGER}, #{partyId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{statusTime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.northsky.model.po.SystemPartyRolePO">
+    insert into system_party_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="partyRoleId != null">
+        party_role_id,
+      </if>
+      <if test="partyId != null">
+        party_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="statusTime != null">
+        status_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="partyRoleId != null">
+        #{partyRoleId,jdbcType=INTEGER},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusTime != null">
+        #{statusTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.northsky.model.po.SystemPartyRolePO">
+    update system_party_role
+    <set>
+      <if test="partyId != null">
+        party_id = #{partyId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusTime != null">
+        status_time = #{statusTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where party_role_id = #{partyRoleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.northsky.model.po.SystemPartyRolePO">
+    update system_party_role
+    set party_id = #{partyId,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status_time = #{statusTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR}
+    where party_role_id = #{partyRoleId,jdbcType=INTEGER}
+  </update>
+</mapper>
