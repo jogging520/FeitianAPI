@@ -21,6 +21,12 @@
     from favourite_record
     where favourite_id = #{favouriteId,jdbcType=BIGINT}
   </select>
+  <select id="selectByPartyId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from favourite_record
+    where party_id = #{0}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from favourite_record
     where favourite_id = #{favouriteId,jdbcType=BIGINT}

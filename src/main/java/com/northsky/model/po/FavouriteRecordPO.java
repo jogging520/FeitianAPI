@@ -2,6 +2,8 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
+import com.northsky.model.vo.FavouriteRecordVO;
+
 public class FavouriteRecordPO {
     private Long favouriteId;
 
@@ -91,5 +93,29 @@ public class FavouriteRecordPO {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+    
+    /**
+     * 方法：将PO对象转换成VO对象
+     * @return
+     */
+    public FavouriteRecordVO converToVO()
+    {
+    	FavouriteRecordVO favouriteRecordVO = null;
+    	
+    	try
+    	{
+    		favouriteRecordVO = new FavouriteRecordVO();
+    		favouriteRecordVO.setPartyId(this.getPartyId());
+    		favouriteRecordVO.setType(this.getType());
+    		favouriteRecordVO.setLast(this.getLast());
+    		favouriteRecordVO.setDescription(this.getDescription());
+    	}
+    	catch(Exception exception)
+    	{
+    		exception.printStackTrace();
+    	}
+    	
+    	return favouriteRecordVO;
     }
 }

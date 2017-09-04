@@ -1,11 +1,14 @@
 package com.northsky.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.northsky.model.po.FavouriteRecordPO;
 
 @Mapper
-public interface FavouriteRecordPOMapper {
+public interface FavouriteRecordPOMapper 
+{
     int deleteByPrimaryKey(Long favouriteId);
 
     int insert(FavouriteRecordPO record);
@@ -13,6 +16,8 @@ public interface FavouriteRecordPOMapper {
     int insertSelective(FavouriteRecordPO record);
 
     FavouriteRecordPO selectByPrimaryKey(Long favouriteId);
+    
+    List<FavouriteRecordPO> selectByPartyId(int partyId);
 
     int updateByPrimaryKeySelective(FavouriteRecordPO record);
 
