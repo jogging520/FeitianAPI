@@ -20,9 +20,12 @@ public class FavouriteService
 	@Autowired
 	private MediaInformationPOMapper mediaInformationPOMapper;
 	
-	public List<FavouriteRecordVO> getMedia(int partyId)
+	public List<FavouriteRecordVO> getMedia(int partyId, String type)
 	{
 		if(partyId <= 0)
+			return null;
+		
+		if(type == null || type.equals(""))
 			return null;
 		
 		List<FavouriteRecordVO> favouriteRecordVOs = null;
@@ -37,7 +40,7 @@ public class FavouriteService
 			if(mediaInformationPOMapper == null)
 				return null;
 			
-			favouriteRecordPOs = favouriteRecordPOMapper.selectByPartyId(partyId);
+			favouriteRecordPOs = favouriteRecordPOMapper.selectByPartyId(partyId, type.toUpperCase());
 			
 			if(favouriteRecordPOs == null)
 				return null;

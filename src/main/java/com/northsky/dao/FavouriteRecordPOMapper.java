@@ -17,7 +17,7 @@ public interface FavouriteRecordPOMapper
 
     FavouriteRecordPO selectByPrimaryKey(Long favouriteId);
     
-    List<FavouriteRecordPO> selectByPartyId(int partyId);
+    List<FavouriteRecordPO> selectByPartyId(int partyId, String type);
 
     int updateByPrimaryKeySelective(FavouriteRecordPO record);
 
