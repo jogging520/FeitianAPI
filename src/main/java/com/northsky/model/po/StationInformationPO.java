@@ -5,7 +5,7 @@ import java.util.Date;
 import com.northsky.model.vo.StationInformationVO;
 
 public class StationInformationPO {
-    private Integer stationid;
+    private Integer stationId;
 
     private String name;
 
@@ -26,13 +26,13 @@ public class StationInformationPO {
     private String description;
 
     public Integer getStationId() {
-        return stationid;
+        return stationId;
     }
 
-    public void setStationid(Integer stationid) {
+    public void setstationId(Integer stationId) {
     	
-    	System.out.println("----+++++" + stationid);
-        this.stationid = stationid;
+    	System.out.println("----+++++" + stationId);
+        this.stationId = stationId;
     }
 
     public String getName() {

@@ -20,7 +20,7 @@ public class MybatisXMLTest {
 	StationInformationPOMapper stationmapper;
 	@Test
 	public void test() {
-		 StationInformationPO stationPO = (StationInformationPO) stationmapper.selectByPrimaryKey(1);
+		 StationInformationPO stationPO = (StationInformationPO) stationmapper.selectByPrimaryKey(1000001);
 		 System.out.println(stationPO.getCategory());
 		
 //		ChannelInformationPO cpo =channelmapper.findAll();

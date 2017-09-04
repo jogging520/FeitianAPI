@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.northsky.model.po.StationInformationPO;
+
 @Mapper
 public interface StationInformationPOMapper {
     int deleteByPrimaryKey(Integer stationId);
