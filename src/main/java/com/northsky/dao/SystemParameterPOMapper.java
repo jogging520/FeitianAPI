@@ -1,7 +1,9 @@
 package com.northsky.dao;
 
-import com.northsky.model.po.SystemParameterPO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.SystemParameterPO;
+@Mapper
 public interface SystemParameterPOMapper {
     int deleteByPrimaryKey(Integer parameterId);
 

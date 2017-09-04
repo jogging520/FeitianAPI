@@ -1,7 +1,9 @@
 package com.northsky.dao;
 
-import com.northsky.model.po.SystemPrivilegePO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.SystemPrivilegePO;
+@Mapper
 public interface SystemPrivilegePOMapper {
     int deleteByPrimaryKey(Integer privilegeId);
 

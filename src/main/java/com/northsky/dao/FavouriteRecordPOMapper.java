@@ -1,7 +1,9 @@
 package com.northsky.dao;
 
-import com.northsky.model.po.FavouriteRecordPO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.FavouriteRecordPO;
+@Mapper
 public interface FavouriteRecordPOMapper {
     int deleteByPrimaryKey(Long favouriteId);
 

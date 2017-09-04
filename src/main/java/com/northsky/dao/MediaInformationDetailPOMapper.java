@@ -1,7 +1,9 @@
 package com.northsky.dao;
 
-import com.northsky.model.po.MediaInformationDetailPO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.MediaInformationDetailPO;
+@Mapper
 public interface MediaInformationDetailPOMapper {
     int deleteByPrimaryKey(Integer mediaDetailId);
 

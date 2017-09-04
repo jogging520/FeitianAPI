@@ -2,8 +2,10 @@ package com.northsky.dao;
 
 import java.util.List;
 
-import com.northsky.model.po.ChannelProgrammeRelationPO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.ChannelProgrammeRelationPO;
+@Mapper
 public interface ChannelProgrammeRelationPOMapper {
     int deleteByPrimaryKey(Integer channelProgrammeId);
 

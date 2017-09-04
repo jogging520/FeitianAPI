@@ -1,7 +1,9 @@
 package com.northsky.dao;
 
-import com.northsky.model.po.OperationTypePO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.OperationTypePO;
+@Mapper
 public interface OperationTypePOMapper {
     int deleteByPrimaryKey(Integer operationTypeId);
 

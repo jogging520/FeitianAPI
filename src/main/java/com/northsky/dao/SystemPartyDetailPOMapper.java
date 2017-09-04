@@ -1,7 +1,9 @@
 package com.northsky.dao;
 
-import com.northsky.model.po.SystemPartyDetailPO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.SystemPartyDetailPO;
+@Mapper
 public interface SystemPartyDetailPOMapper {
     int deleteByPrimaryKey(Integer partyDetailId);
 

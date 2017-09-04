@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.northsky.Application;
 import com.northsky.dao.StationInformationPOMapper;
 import com.northsky.model.po.StationInformationPO;
-import com.northsky.service.PlayListService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)

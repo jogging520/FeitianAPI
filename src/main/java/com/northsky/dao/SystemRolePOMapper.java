@@ -1,7 +1,9 @@
 package com.northsky.dao;
 
-import com.northsky.model.po.SystemRolePO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.SystemRolePO;
+@Mapper
 public interface SystemRolePOMapper {
     int deleteByPrimaryKey(Integer roleId);
 

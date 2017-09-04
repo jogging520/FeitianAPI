@@ -1,7 +1,9 @@
 package com.northsky.dao;
 
-import com.northsky.model.po.SystemOrganizationPO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.SystemOrganizationPO;
+@Mapper
 public interface SystemOrganizationPOMapper {
     int deleteByPrimaryKey(Integer organizationId);
 

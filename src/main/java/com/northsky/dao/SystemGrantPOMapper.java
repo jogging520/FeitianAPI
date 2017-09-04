@@ -1,7 +1,9 @@
 package com.northsky.dao;
 
-import com.northsky.model.po.SystemGrantPO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.SystemGrantPO;
+@Mapper
 public interface SystemGrantPOMapper {
     int deleteByPrimaryKey(Integer grantId);
 

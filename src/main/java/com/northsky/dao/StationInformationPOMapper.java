@@ -2,8 +2,10 @@ package com.northsky.dao;
 
 import java.util.List;
 
-import com.northsky.model.po.StationInformationPO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.StationInformationPO;
+@Mapper
 public interface StationInformationPOMapper {
     int deleteByPrimaryKey(Integer stationId);
 

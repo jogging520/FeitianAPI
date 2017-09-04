@@ -1,7 +1,9 @@
 package com.northsky.dao;
 
-import com.northsky.model.po.SystemLoginRecordPO;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.northsky.model.po.SystemLoginRecordPO;
+@Mapper
 public interface SystemLoginRecordPOMapper {
     int deleteByPrimaryKey(Long loginId);
 
