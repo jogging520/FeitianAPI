@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.northsky.model.po.StationChannelRelationPO;
+
 @Mapper
 public interface StationChannelRelationPOMapper {
     int deleteByPrimaryKey(Integer stationChannelId);

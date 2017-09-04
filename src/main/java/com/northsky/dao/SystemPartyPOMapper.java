@@ -3,6 +3,7 @@ package com.northsky.dao;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.northsky.model.po.SystemPartyPO;
+
 @Mapper
 public interface SystemPartyPOMapper {
     int deleteByPrimaryKey(Integer partyId);

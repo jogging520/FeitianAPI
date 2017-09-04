@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.northsky.model.po.ChannelProgrammeRelationPO;
+
 @Mapper
 public interface ChannelProgrammeRelationPOMapper {
     int deleteByPrimaryKey(Integer channelProgrammeId);
