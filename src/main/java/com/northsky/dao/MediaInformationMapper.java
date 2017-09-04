@@ -11,8 +11,8 @@ import com.northsky.model.po.MediaInformationPO;
 @Mapper
 public interface MediaInformationMapper {
 
-    @Select("SELECT * FROM media_information where media_id = #{media_id}")
-    MediaInformationPO findByid(@Param("media_id") int  media_id);
+    @Select("SELECT * FROM media_information where media_id = #{mediaId}")
+    MediaInformationPO findByid(@Param("mediaId") int  mediaId);
     
     @Select("SELECT * FROM media_information where status = #{status}")
     List<MediaInformationPO> getAllByStatus(@Param("status") int  status);

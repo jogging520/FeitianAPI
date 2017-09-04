@@ -2,6 +2,8 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
+import com.northsky.model.vo.StationInformationVO;
+
 public class StationInformationPO {
     private Integer stationid;
 
@@ -104,5 +106,32 @@ public class StationInformationPO {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+    
+    /**
+     * 方法：将PO对象转换成VO对象
+     * @return
+     */
+    public StationInformationVO converToVO()
+    {
+    	StationInformationVO stationInformationVO = null;
+    	
+    	try
+    	{
+    		stationInformationVO = new StationInformationVO();
+    		stationInformationVO.setName(this.getName());
+    		stationInformationVO.setCategory(this.getCategory());
+    		stationInformationVO.setType(this.getType());
+    		stationInformationVO.setTitle(this.getTitle());
+    		stationInformationVO.setLogoMedia(null);
+    		stationInformationVO.setDescription(this.getDescription());
+    		stationInformationVO.setChannels(null);
+    	}
+    	catch(Exception exception)
+    	{
+    		exception.printStackTrace();
+    	}
+    	
+    	return stationInformationVO;
     }
 }

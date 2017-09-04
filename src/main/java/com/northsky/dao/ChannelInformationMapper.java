@@ -11,8 +11,8 @@ import com.northsky.model.po.ChannelInformationPO;
 @Mapper
 public interface ChannelInformationMapper { 
 	 
-	@Select("SELECT * FROM channel_information where channel_id = #{channel_id}")
-	ChannelInformationPO findByChannelId(@Param("channel_id") int  channel_id);
+	@Select("SELECT * FROM channel_information where channel_id = #{channelId}")
+	ChannelInformationPO findByChannelId(@Param("channelId") int  channelId);
 	
 	@Select("SELECT * FROM channel_information where status = #{status}")
 	    List<ChannelInformationPO> getAllByStatus(@Param("status") int  status);

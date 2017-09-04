@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.northsky.dao.ChannelInformationMapper;
 import com.northsky.dao.ChannelProgrammeRelationMapper;
-import com.northsky.dao.MediaInformationDetailMapper;
 import com.northsky.dao.MediaInformationMapper;
 import com.northsky.dao.ProgrammeInformationMapper;
 import com.northsky.dao.StationChannelRelationMapper;
 import com.northsky.dao.StationInformationMapper;
 import com.northsky.model.po.ChannelInformationPO;
 import com.northsky.model.po.ChannelProgrammeRelationPO;
+import com.northsky.model.po.MediaInformationPO;
 import com.northsky.model.po.ProgrammeInformationPO;
 import com.northsky.model.po.StationChannelRelationPO;
 import com.northsky.model.po.StationInformationPO;
@@ -23,106 +23,123 @@ import com.northsky.model.vo.ChannelInformationVO;
 import com.northsky.model.vo.PlayListVO;
 import com.northsky.model.vo.ProgrammeInformationVO;
 import com.northsky.model.vo.StationInformationVO;
+
 @Service 
-public class PlayListService {
+public class PlayListService 
+{	
 	private Logger logger = Logger.getLogger(getClass());
 	
 	@Autowired
-	private ChannelInformationMapper channelInfoMapper;
-   @Autowired
-	private ChannelProgrammeRelationMapper channelproRelationMapper;
-   @Autowired
-	private MediaInformationDetailMapper mediaInfoDeilMapper;
-   @Autowired
-	private MediaInformationMapper mediaInfoMapper;
+	private ChannelInformationMapper channelInformationMapper;
+	@Autowired
+	private ChannelProgrammeRelationMapper channelProgrammeRelationMapper;
+	@Autowired
+	private MediaInformationMapper mediaInformationMapper;	
+	@Autowired
+	private ProgrammeInformationMapper programmeInformationMapper;
+	@Autowired
+	private StationChannelRelationMapper stationChannelRelationMapper;
+	@Autowired
+	private StationInformationMapper stationInformationMapper;
 	
-   @Autowired
-	private ProgrammeInformationMapper progrommeMapper;
-   @Autowired
-	private StationChannelRelationMapper stationChannelRelaitonMapper;
-   @Autowired
-	private StationInformationMapper stationInfoMapper;
-   
-   public PlayListVO getPlaylist() {
-	   PlayListVO playlistVO = new PlayListVO();
-	   List<ChannelProgrammeRelationPO>  channelProgremmeRelationList =null;
-	   List<StationChannelRelationPO>  stationChanelRelationList =null;
-	   List<StationInformationPO>  stationInfoList =stationInfoMapper.getAllByStatus(1);
-	   
-	   System.out.println("----" + stationInfoList.size());
-	   
-	   List<StationInformationVO> stations = new ArrayList<StationInformationVO>();
-	   for(int i=0;i<stationInfoList.size();i++)
-	   {
-		   StationInformationVO stationVO = new StationInformationVO();
-		   stationVO.setCategory(stationInfoList.get(i).getCategory());
-		   stationVO.setDescription(stationInfoList.get(i).getDescription());
-		   System.out.println("----" + stationInfoList.get(i).getCategory());
-		   System.out.println("----" + stationInfoList.get(i).getDescription());
-		   System.out.println("----" + stationInfoList.get(i).getTitle());
-		   System.out.println("----" + stationInfoList.get(i).getType());
-		   System.out.println("----" + stationInfoList.get(i).getCreateTime());
-		   Integer mediaId =stationInfoList.get(i).getLogoMediaId();
-		   System.out.println("mediaId----" + mediaId.intValue());
-		   
-		   String location = mediaInfoMapper.findByid(mediaId).getLocaion();
-		   stationVO.setLogoMedia(location);
-		   stationVO.setName(stationInfoList.get(i).getName());
-		   stationVO.setTitle(stationInfoList.get(i).getTitle());
-		   stationVO.setType(stationInfoList.get(i).getType());
-		   List<ChannelInformationVO> channels = new ArrayList<ChannelInformationVO>();
-		   
-		   stationChanelRelationList =stationChannelRelaitonMapper.findByStationId(stationInfoList.get(i).getStationId());
-		   for(int j=0;j<stationChanelRelationList.size();j++)
-		   {
-		         ChannelInformationVO channelVO =new ChannelInformationVO();
-		         int channelId = stationChanelRelationList.get(j).getChannelId();
-		         
-		         ChannelInformationPO channelInformationPO = channelInfoMapper.findByChannelId(channelId);
-		         
-		         channelVO.setCategory(channelInformationPO.getCategory());
-		         channelVO.setDescription(channelInformationPO.getDescription());
-		         
-		         int channelMediaId =channelInformationPO.getLogoMediaId();
-				 String channellocation = mediaInfoMapper.findByid(channelMediaId).getLocaion();
-		         channelVO.setLogoMedia(channellocation);
-		         channelVO.setType(channelInformationPO.getType());
-		         channelVO.setTitle(channelInformationPO.getTitle());
-		         
-		         channelProgremmeRelationList = channelproRelationMapper.findByChannelId(channelId);
-		         List<ProgrammeInformationVO> programmes = new ArrayList<ProgrammeInformationVO>();
-		         for(int k=0; k<channelProgremmeRelationList.size(); k++)
-		         {
-		        	 ProgrammeInformationVO programmeInformationVO = new ProgrammeInformationVO();
-		        	 int programmeId = channelProgremmeRelationList.get(k).getProgrammeId();
-		        	 ProgrammeInformationPO programmeInformationPO = progrommeMapper.findByProgrammeId(programmeId);
-		        	 
-		        	 programmeInformationVO.setCategory(programmeInformationPO.getCategory());
-		        	 programmeInformationVO.setDescription(programmeInformationPO.getDescription());
-		        	 programmeInformationVO.setName(programmeInformationPO.getName());
-		        	 programmeInformationVO.setTitle(programmeInformationPO.getTitle());
-		        	 programmeInformationVO.setType(programmeInformationPO.getType());
-		        	 
-		        	 int programmeMediaId =programmeInformationPO.getMediaId();
-		        	 int programmeSnapshotMediaId = programmeInformationPO.getSnapshotMediaId();
-					 String programmeMediaLocation = mediaInfoMapper.findByid(programmeMediaId).getLocaion();
-					 String programmeSnapshotLocation = mediaInfoMapper.findByid(programmeSnapshotMediaId).getLocaion();
-			         
-					 programmeInformationVO.setMedia(programmeMediaLocation);
-					 programmeInformationVO.setSnapshotMedia(programmeSnapshotLocation);
-					 programmes.add(programmeInformationVO);
-		         }
-		         
-		         channels.add(channelVO);
-		       
-		   }      		   
-	        stations.add(stationVO);
-  
-	   }
-	   playlistVO.setStations(stations);
-       
-       return playlistVO;
-  
-   }
+	private static final int status = 1;
 
+	
+	public PlayListVO getPlaylist() 
+	{
+		PlayListVO playListVO = null;
+		List<StationInformationPO> stationInformationPOs = null;
+		List<StationInformationVO> stationInformationVOs = null;
+		List<StationChannelRelationPO> stationChannelRelationPOs = null;
+		List<ChannelInformationVO> channelInformationVOs = null;
+		List<ChannelProgrammeRelationPO> channelProgrammeRelationPOs = null;
+		List<ProgrammeInformationVO> programmeInformationVOs = null;
+		StationInformationVO stationInformationVO = null;
+		ChannelInformationVO channelInformationVO = null;
+		ChannelInformationPO channelInformationPO = null;
+		ProgrammeInformationVO programmeInformationVO = null;
+		ProgrammeInformationPO programmeInformationPO = null;
+				
+		try
+		{
+			if(stationInformationMapper == null)
+				return playListVO;
+						
+			if(stationChannelRelationMapper == null)
+				return playListVO;
+			
+			if(channelInformationMapper == null)
+				return playListVO;
+			
+			if(channelProgrammeRelationMapper == null)
+				return playListVO;
+			
+			if(programmeInformationMapper == null)
+				return playListVO;
+			
+			playListVO = new PlayListVO();
+			
+			stationInformationVOs = new ArrayList<StationInformationVO>();
+			stationInformationPOs = stationInformationMapper.getAllByStatus(status);
+			playListVO.setStations(stationInformationVOs);	
+			
+			for(StationInformationPO stationInformationPO: stationInformationPOs)
+			{
+				stationInformationVO = stationInformationPO.converToVO();
+				stationInformationVO.setLogoMedia(getMediaLocation(stationInformationPO.getLogoMediaId()));
+				
+				stationChannelRelationPOs = stationChannelRelationMapper.findByStationId(stationInformationPO.getStationId());
+				channelInformationVOs = new ArrayList<ChannelInformationVO>();
+				stationInformationVO.setChannels(channelInformationVOs);
+				
+				for(StationChannelRelationPO stationChannelRelationPO: stationChannelRelationPOs)
+				{
+					channelInformationPO = channelInformationMapper.findByChannelId(stationChannelRelationPO.getChannelId());
+					channelInformationVO = channelInformationPO.converToVO();
+					channelInformationVO.setLogoMedia(getMediaLocation(channelInformationPO.getLogoMediaId()));
+					
+					channelProgrammeRelationPOs = channelProgrammeRelationMapper.findByChannelId(channelInformationPO.getChannelId());
+					programmeInformationVOs = new ArrayList<ProgrammeInformationVO>();
+					channelInformationVO.setProgrammes(programmeInformationVOs);
+					
+					for(ChannelProgrammeRelationPO channelProgrammeRelationPO: channelProgrammeRelationPOs)
+					{
+						programmeInformationPO = programmeInformationMapper.findByProgrammeId(channelProgrammeRelationPO.getProgrammeId());
+						programmeInformationVO = programmeInformationPO.converToVO();
+						programmeInformationVO.setMedia(getMediaLocation(programmeInformationPO.getMediaId()));
+						programmeInformationVO.setSnapshotMedia(getMediaLocation(programmeInformationPO.getSnapshotMediaId()));
+						
+						programmeInformationVOs.add(programmeInformationVO);
+					}
+					
+					channelInformationVOs.add(channelInformationVO);
+				}
+				
+				stationInformationVOs.add(stationInformationVO);
+			}
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+			logger.info("----------");
+		}
+		
+		return playListVO;
+	}
+	
+	private String getMediaLocation(int mediaId)
+	{
+		if(mediaId <= 0)
+			return null;
+		
+		if(mediaInformationMapper == null)
+			return null;
+		
+		MediaInformationPO mediaInformationPO = mediaInformationMapper.findByid(mediaId);
+		
+		if(mediaInformationPO == null)
+			return null;
+		
+		return mediaInformationPO.getLocaion();
+	}
 }

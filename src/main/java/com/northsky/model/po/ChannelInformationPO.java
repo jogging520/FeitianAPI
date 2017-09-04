@@ -2,6 +2,8 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
+import com.northsky.model.vo.ChannelInformationVO;
+
 public class ChannelInformationPO {
     private Integer channelId;
 
@@ -101,5 +103,32 @@ public class ChannelInformationPO {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+    
+    /**
+     * 方法：将PO对象转换成VO对象
+     * @return
+     */
+    public ChannelInformationVO converToVO()
+    {
+    	ChannelInformationVO channelInformationVO = null;
+    	
+    	try
+    	{
+    		channelInformationVO = new ChannelInformationVO();
+    		channelInformationVO.setName(this.getName());
+    		channelInformationVO.setCategory(this.getCategory());
+    		channelInformationVO.setType(this.getType());
+    		channelInformationVO.setTitle(this.getTitle());
+    		channelInformationVO.setLogoMedia(null);
+    		channelInformationVO.setDescription(this.getDescription());
+    		channelInformationVO.setProgrammes(null);
+    	}
+    	catch(Exception exception)
+    	{
+    		exception.printStackTrace();
+    	}
+    	
+    	return channelInformationVO;
     }
 }

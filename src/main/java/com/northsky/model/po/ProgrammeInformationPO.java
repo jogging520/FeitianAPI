@@ -2,6 +2,7 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
+import com.northsky.model.vo.ProgrammeInformationVO;
 public class ProgrammeInformationPO {
     private Integer programmeId;
 
@@ -111,5 +112,32 @@ public class ProgrammeInformationPO {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+    
+    /**
+     * 方法：将PO对象转换成VO对象
+     * @return
+     */
+    public ProgrammeInformationVO converToVO()
+    {
+    	ProgrammeInformationVO programmeInformationVO = null;
+    	
+    	try
+    	{
+    		programmeInformationVO = new ProgrammeInformationVO();
+    		programmeInformationVO.setName(this.getName());
+    		programmeInformationVO.setCategory(this.getCategory());
+    		programmeInformationVO.setType(this.getType());
+    		programmeInformationVO.setTitle(this.getTitle());
+    		programmeInformationVO.setMedia(null);
+    		programmeInformationVO.setSnapshotMedia(null);
+    		programmeInformationVO.setDescription(this.getDescription());    		
+    	}
+    	catch(Exception exception)
+    	{
+    		exception.printStackTrace();
+    	}
+    	
+    	return programmeInformationVO;
     }
 }
