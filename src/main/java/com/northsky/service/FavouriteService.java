@@ -1,81 +1,59 @@
 package com.northsky.service;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.northsky.dao.FavouriteRecordPOMapper;
-import com.northsky.dao.MediaInformationPOMapper;
-import com.northsky.model.po.FavouriteRecordPO;
-import com.northsky.model.po.MediaInformationPO;
+import com.northsky.domain.FavouriteDomain;
 import com.northsky.model.vo.FavouriteRecordVO;
+import com.northsky.model.vo.ServiceVO;
 
 @Service 
 public class FavouriteService 
 {
 	@Autowired
-	private FavouriteRecordPOMapper favouriteRecordPOMapper;
-	@Autowired
-	private MediaInformationPOMapper mediaInformationPOMapper;
+	private FavouriteDomain favouriteDomain;
 	
-	public List<FavouriteRecordVO> getMedia(int partyId, String type)
+	private ServiceVO serviceVO = null;
+	
+	public ServiceVO getMedia(int partyId, String type)
 	{
-		if(partyId <= 0)
-			return null;
-		
-		if(type == null || type.equals(""))
-			return null;
-		
 		List<FavouriteRecordVO> favouriteRecordVOs = null;
-		List<FavouriteRecordPO> favouriteRecordPOs = null;
-		FavouriteRecordVO favouriteRecordVO = null;
 		
 		try
-    	{
-			if(favouriteRecordPOMapper == null)
+		{		
+			serviceVO = new ServiceVO();
+			//TODO 按统一的格式来命名域
+			serviceVO.setHeaderRequestDomain("APP");
+			serviceVO.setHeaderResponseDomain("SERVER");
+			
+			if(partyId <= 0)
 				return null;
 			
-			if(mediaInformationPOMapper == null)
+			if(type == null || type.equals(""))
 				return null;
 			
-			favouriteRecordPOs = favouriteRecordPOMapper.selectByPartyId(partyId, type.toUpperCase());
-			
-			if(favouriteRecordPOs == null)
+			if(favouriteDomain == null)
 				return null;
 			
-			favouriteRecordVOs = new ArrayList<FavouriteRecordVO>();
+			//get类的如果没有exception，都按业务级成功处理。如果有exception，那么就根据exception类型来顶code和desc。
+			//对外抛出的异常和内部的异常有所区分，内部更加详细。
+			//domain及以下都不catchexception，由service层来catch
+			favouriteRecordVOs = favouriteDomain.getMedia(partyId, type);
 			
-			for(FavouriteRecordPO favouriteRecordPO: favouriteRecordPOs)
-			{
-				favouriteRecordVO = favouriteRecordPO.converToVO();
-				favouriteRecordVO.setMedia(getMediaLocation(favouriteRecordPO.getMediaId()));
-				
-				favouriteRecordVOs.add(favouriteRecordVO);
-			}		
-    	}
+			serviceVO.setBody(favouriteRecordVOs);
+			serviceVO.setHeaderResponseTime(new Date());
+		}
 		catch(Exception exception)
     	{
     		exception.printStackTrace();
+    		serviceVO.setHeaderResponseCode("2999");
+    		serviceVO.setHeaderResponseDescription("Error");
+    		serviceVO.setHeaderRequestTime(new Date());
     	}
 		
-		return favouriteRecordVOs;		
-	}
-	
-	private String getMediaLocation(int mediaId)
-	{
-		if(mediaId <= 0)
-			return null;
-		
-		if(mediaInformationPOMapper == null)
-			return null;
-		
-		MediaInformationPO mediaInformationPO = mediaInformationPOMapper.selectByPrimaryKey(mediaId);
-		
-		if(mediaInformationPO == null)
-			return null;
-		
-		return mediaInformationPO.getLocaion();
+		return serviceVO;
 	}
 }

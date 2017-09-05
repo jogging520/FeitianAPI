@@ -2,7 +2,7 @@ package com.northsky.model.vo;
 
 import java.util.Map;
 
-public class MediaInformationVO 
+public class MediaInformationVO
 {
     private String name;
 

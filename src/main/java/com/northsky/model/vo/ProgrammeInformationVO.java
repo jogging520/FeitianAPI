@@ -1,6 +1,6 @@
 package com.northsky.model.vo;
 
-public class ProgrammeInformationVO 
+public class ProgrammeInformationVO
 {
     private String name;
 

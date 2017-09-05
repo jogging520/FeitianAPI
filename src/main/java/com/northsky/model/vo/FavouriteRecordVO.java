@@ -1,6 +1,6 @@
 package com.northsky.model.vo;
 
-public class FavouriteRecordVO 
+public class FavouriteRecordVO
 {
     private Integer partyId;
 

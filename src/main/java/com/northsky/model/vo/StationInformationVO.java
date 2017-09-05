@@ -2,7 +2,7 @@ package com.northsky.model.vo;
 
 import java.util.List;
 
-public class StationInformationVO 
+public class StationInformationVO
 {	
     private String name;
 
