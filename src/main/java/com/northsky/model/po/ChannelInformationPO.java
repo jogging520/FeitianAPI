@@ -4,7 +4,8 @@ import java.util.Date;
 
 import com.northsky.model.vo.ChannelInformationVO;
 
-public class ChannelInformationPO {
+public class ChannelInformationPO 
+{
     private Integer channelId;
 
     private String name;
