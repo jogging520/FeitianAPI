@@ -1,5 +1,7 @@
 package com.northsky.model.vo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.northsky.util.UUIDUtil;
@@ -46,14 +48,21 @@ public class ServiceVO
 		this.getHeader().setRequestSerialNo(requestSerialNo);
 	}
 	
-	public Date getHeaderRequestTime() 
+	public String getHeaderRequestTime() 
 	{
 		return this.getHeader().getRequestTime();
 	}
 	
-	public void setHeaderRequestTime(Date requestTime) 
+	public void setHeaderRequestTime(String requestTime) 
 	{
 		this.getHeader().setRequestTime(requestTime);
+	}
+	
+	public void setHeaderRequestTime(Date requestTime) 
+	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+		
+		this.getHeader().setRequestTime(dateFormat.format(requestTime));
 	}
 	
 	public String getHeaderRequestDomain() 
@@ -76,14 +85,21 @@ public class ServiceVO
 		this.getHeader().setResponseSerialNo(responseSerialNo);
 	}
 	
-	public Date getHeaderResponsetHeaderime() 
+	public String getHeaderResponsetHeaderime() 
 	{
 		return this.getHeader().getResponseTime();
 	}
 	
-	public void setHeaderResponseTime(Date responseTime) 
+	public void setHeaderResponseTime(String responseTime) 
 	{
 		this.getHeader().setResponseTime(responseTime);
+	}
+	
+	public void setHeaderResponseTime(Date responseTime) 
+	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");		
+		
+		this.getHeader().setResponseTime(dateFormat.format(responseTime));
 	}
 	
 	public String getHeaderResponseDomain() 
@@ -131,22 +147,24 @@ public class ServiceVO
 	class Header
 	{
 		private String 	requestSerialNo;		//请求流水号
-		private Date 	requestTime;			//请求发起时间
+		private String 	requestTime;			//请求发起时间
 		private String 	requestDomain;			//请求机构
 		private String 	responseSerialNo;		//响应流水号
-		private Date 	responseTime;			//响应时间
+		private String 	responseTime;			//响应时间
 		private String 	responseDomain;			//响应机构
 		private String 	responseCode;			//响应代码（业务级）
 		private String 	responseDescription;	//响应描述（业务级）
 		
 		public Header()
 		{
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+			
 			Date date = new Date();
 			this.setRequestSerialNo(UUIDUtil.getUUID());
-			this.setRequestTime(date);
+			this.setRequestTime(dateFormat.format(date));
 			
 			this.setResponseSerialNo(UUIDUtil.getUUID());
-			this.setResponseTime(date);
+			this.setResponseTime(dateFormat.format(date));
 			//TODO 0000响应码后面要替换成ENUM类
 			this.setResponseCode("0000");
 		}
@@ -161,12 +179,12 @@ public class ServiceVO
 			this.requestSerialNo = requestSerialNo;
 		}
 		
-		public Date getRequestTime() 
+		public String getRequestTime() 
 		{
 			return requestTime;
 		}
 		
-		public void setRequestTime(Date requestTime) 
+		public void setRequestTime(String requestTime) 
 		{
 			this.requestTime = requestTime;
 		}
@@ -191,12 +209,12 @@ public class ServiceVO
 			this.responseSerialNo = responseSerialNo;
 		}
 		
-		public Date getResponseTime() 
+		public String getResponseTime() 
 		{
 			return responseTime;
 		}
 		
-		public void setResponseTime(Date responseTime) 
+		public void setResponseTime(String responseTime) 
 		{
 			this.responseTime = responseTime;
 		}
