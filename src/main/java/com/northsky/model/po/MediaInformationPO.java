@@ -15,7 +15,7 @@ public class MediaInformationPO {
 
     private String storeType;
 
-    private String locaion;
+    private String location;
 
     private Long size;
 
@@ -67,12 +67,12 @@ public class MediaInformationPO {
         this.storeType = storeType == null ? null : storeType.trim();
     }
 
-    public String getLocaion() {
-        return locaion;
+    public String getLocation() {
+        return location;
     }
 
-    public void setLocaion(String locaion) {
-        this.locaion = locaion == null ? null : locaion.trim();
+    public void setLocation(String location) {
+        this.location = location == null ? null : location.trim();
     }
 
     public Long getSize() {
@@ -126,7 +126,7 @@ public class MediaInformationPO {
     		mediaInformationVO.setCategory(this.getCategory());
     		mediaInformationVO.setType(this.getType());
     		mediaInformationVO.setStoreType(this.getStoreType());
-    		mediaInformationVO.setLocaion(this.getLocaion());
+    		mediaInformationVO.setLocation(this.getLocation());
     		mediaInformationVO.setSize(this.getSize());
     		mediaInformationVO.setDescription(this.getDescription());
     	}

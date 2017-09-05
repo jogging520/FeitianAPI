@@ -120,23 +120,14 @@ public class ProgrammeInformationPO {
      */
     public ProgrammeInformationVO converToVO()
     {
-    	ProgrammeInformationVO programmeInformationVO = null;
-    	
-    	try
-    	{
-    		programmeInformationVO = new ProgrammeInformationVO();
-    		programmeInformationVO.setName(this.getName());
-    		programmeInformationVO.setCategory(this.getCategory());
-    		programmeInformationVO.setType(this.getType());
-    		programmeInformationVO.setTitle(this.getTitle());
-    		programmeInformationVO.setMedia(null);
-    		programmeInformationVO.setSnapshotMedia(null);
-    		programmeInformationVO.setDescription(this.getDescription());    		
-    	}
-    	catch(Exception exception)
-    	{
-    		exception.printStackTrace();
-    	}
+    	ProgrammeInformationVO programmeInformationVO = new ProgrammeInformationVO();
+		programmeInformationVO.setName(this.getName());
+		programmeInformationVO.setCategory(this.getCategory());
+		programmeInformationVO.setType(this.getType());
+		programmeInformationVO.setTitle(this.getTitle());
+		programmeInformationVO.setMedia(null);
+		programmeInformationVO.setSnapshotMedia(null);
+		programmeInformationVO.setDescription(this.getDescription());    		
     	
     	return programmeInformationVO;
     }

@@ -7,7 +7,7 @@
     <result column="category" jdbcType="VARCHAR" property="category" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="store_type" jdbcType="VARCHAR" property="storeType" />
-    <result column="locaion" jdbcType="VARCHAR" property="locaion" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
     <result column="size" jdbcType="BIGINT" property="size" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -15,7 +15,7 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
   <sql id="Base_Column_List">
-    media_id, name, category, type, store_type, locaion, size, status, create_time, status_time, 
+    media_id, name, category, type, store_type, location, size, status, create_time, status_time, 
     description
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -24,17 +24,23 @@
     from media_information
     where media_id = #{mediaId,jdbcType=INTEGER}
   </select>
+  <select id="selectByLocation" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from media_information
+    where upper(location) = upper(#{0})
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from media_information
     where media_id = #{mediaId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.northsky.model.po.MediaInformationPO">
     insert into media_information (media_id, name, category, 
-      type, store_type, locaion, 
+      type, store_type, location, 
       size, status, create_time, 
       status_time, description)
     values (#{mediaId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{storeType,jdbcType=VARCHAR}, #{locaion,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{storeType,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
       #{size,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{statusTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR})
   </insert>
@@ -56,8 +62,8 @@
       <if test="storeType != null">
         store_type,
       </if>
-      <if test="locaion != null">
-        locaion,
+      <if test="location != null">
+        location,
       </if>
       <if test="size != null">
         size,
@@ -91,8 +97,8 @@
       <if test="storeType != null">
         #{storeType,jdbcType=VARCHAR},
       </if>
-      <if test="locaion != null">
-        #{locaion,jdbcType=VARCHAR},
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
       </if>
       <if test="size != null">
         #{size,jdbcType=BIGINT},
@@ -126,8 +132,8 @@
       <if test="storeType != null">
         store_type = #{storeType,jdbcType=VARCHAR},
       </if>
-      <if test="locaion != null">
-        locaion = #{locaion,jdbcType=VARCHAR},
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
       </if>
       <if test="size != null">
         size = #{size,jdbcType=BIGINT},
@@ -153,7 +159,7 @@
       category = #{category,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
       store_type = #{storeType,jdbcType=VARCHAR},
-      locaion = #{locaion,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
       size = #{size,jdbcType=BIGINT},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},

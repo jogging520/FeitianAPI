@@ -5,7 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.northsky.model.po.MediaInformationPO;
 
 @Mapper
-public interface MediaInformationPOMapper {
+public interface MediaInformationPOMapper 
+{
     int deleteByPrimaryKey(Integer mediaId);
 
     int insert(MediaInformationPO record);
@@ -13,6 +14,8 @@ public interface MediaInformationPOMapper {
     int insertSelective(MediaInformationPO record);
 
     MediaInformationPO selectByPrimaryKey(Integer mediaId);
+    
+    int selectByLocation(String location);
 
     int updateByPrimaryKeySelective(MediaInformationPO record);
 

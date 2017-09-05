@@ -101,20 +101,11 @@ public class FavouriteRecordPO {
      */
     public FavouriteRecordVO converToVO()
     {
-    	FavouriteRecordVO favouriteRecordVO = null;
-    	
-    	try
-    	{
-    		favouriteRecordVO = new FavouriteRecordVO();
-    		favouriteRecordVO.setPartyId(this.getPartyId());
-    		favouriteRecordVO.setType(this.getType());
-    		favouriteRecordVO.setLast(this.getLast());
-    		favouriteRecordVO.setDescription(this.getDescription());
-    	}
-    	catch(Exception exception)
-    	{
-    		exception.printStackTrace();
-    	}
+    	FavouriteRecordVO favouriteRecordVO = new FavouriteRecordVO();
+		favouriteRecordVO.setPartyId(this.getPartyId());
+		favouriteRecordVO.setType(this.getType());
+		favouriteRecordVO.setLast(this.getLast());
+		favouriteRecordVO.setDescription(this.getDescription());
     	
     	return favouriteRecordVO;
     }

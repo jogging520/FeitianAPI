@@ -1,5 +1,9 @@
 package com.northsky.model.vo;
 
+import java.util.Date;
+
+import com.northsky.model.po.FavouriteRecordPO;
+
 public class FavouriteRecordVO
 {
     private Integer partyId;
@@ -50,5 +54,21 @@ public class FavouriteRecordVO
 
 	public void setMedia(String media) {
 		this.media = media;
+	}
+	
+	public FavouriteRecordPO converToPO()
+	{
+		FavouriteRecordPO favouriteRecordPO = new FavouriteRecordPO();
+		
+		favouriteRecordPO.setPartyId(this.getPartyId());
+		favouriteRecordPO.setType(this.getType());
+		favouriteRecordPO.setLast(this.getLast());
+		favouriteRecordPO.setStatus(1);
+		Date date = new Date();
+		favouriteRecordPO.setCreateTime(date);
+		favouriteRecordPO.setStatusTime(date);
+		favouriteRecordPO.setDescription(this.getDescription());
+		
+		return favouriteRecordPO;
 	}
 }

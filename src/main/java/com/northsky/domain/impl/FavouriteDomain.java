@@ -5,9 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.northsky.dao.FavouriteRecordPOMapper;
 import com.northsky.dao.MediaInformationPOMapper;
+import com.northsky.dao.RecordSequencePOMapper;
 import com.northsky.domain.IFavouriteDomain;
 import com.northsky.model.po.FavouriteRecordPO;
 import com.northsky.model.po.MediaInformationPO;
@@ -20,9 +24,11 @@ public class FavouriteDomain implements IFavouriteDomain
 	private FavouriteRecordPOMapper favouriteRecordPOMapper;
 	@Autowired
 	private MediaInformationPOMapper mediaInformationPOMapper;
+	@Autowired
+	private RecordSequencePOMapper recordSequencePOMapper;
 	
 	@Override
-	public List<FavouriteRecordVO> getMedia(int partyId, String type) throws Exception
+	public List<FavouriteRecordVO> getFavourite(int partyId, String type) throws Exception
 	{
 		if(partyId <= 0)
 			return null;
@@ -58,6 +64,43 @@ public class FavouriteDomain implements IFavouriteDomain
 		return favouriteRecordVOs;		
 	}
 	
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
+	public boolean appendFavourite(FavouriteRecordVO favouriteRecordVO) throws Exception
+	{
+		boolean result = false;
+		FavouriteRecordPO favouriteRecordPO = null;
+		long favouriteId = 0L;
+		
+		try
+		{
+			if(recordSequencePOMapper == null)
+				return result;
+			
+			if(favouriteRecordPOMapper == null)
+				return result;
+			
+			favouriteRecordPO = favouriteRecordVO.converToPO();
+			
+			favouriteId = recordSequencePOMapper.nextval();
+			
+			favouriteRecordPO.setFavouriteId(favouriteId);
+			
+			favouriteRecordPO.setMediaId(getMediaId(favouriteRecordVO.getMedia()));
+			
+			if(favouriteRecordPOMapper.insert(favouriteRecordPO) < 0)
+			{
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			}
+		}
+		catch(Exception exception)
+		{
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+		}
+		
+		return result;
+	}
+	
 	private String getMediaLocation(int mediaId) throws Exception
 	{
 		if(mediaId <= 0)
@@ -71,6 +114,17 @@ public class FavouriteDomain implements IFavouriteDomain
 		if(mediaInformationPO == null)
 			return null;
 		
-		return mediaInformationPO.getLocaion();
+		return mediaInformationPO.getLocation();
+	}
+	
+	private int getMediaId(String location) throws Exception
+	{
+		if(location == null || location.equals(""))
+			return -1;
+		
+		if(mediaInformationPOMapper == null)
+			return -1;
+		
+		return mediaInformationPOMapper.selectByLocation(location);
 	}
 }

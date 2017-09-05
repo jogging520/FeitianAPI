@@ -6,7 +6,7 @@ import com.northsky.model.vo.FavouriteRecordVO;
 
 public interface IFavouriteDomain 
 {
-	public List<FavouriteRecordVO> getMedia(int partyId, String type) throws Exception;
+	public List<FavouriteRecordVO> getFavourite(int partyId, String type) throws Exception;
 	
-	
+	public boolean appendFavourite(FavouriteRecordVO favouriteRecordVO) throws Exception;
 }

@@ -112,23 +112,14 @@ public class ChannelInformationPO
      */
     public ChannelInformationVO converToVO()
     {
-    	ChannelInformationVO channelInformationVO = null;
-    	
-    	try
-    	{
-    		channelInformationVO = new ChannelInformationVO();
-    		channelInformationVO.setName(this.getName());
-    		channelInformationVO.setCategory(this.getCategory());
-    		channelInformationVO.setType(this.getType());
-    		channelInformationVO.setTitle(this.getTitle());
-    		channelInformationVO.setLogoMedia(null);
-    		channelInformationVO.setDescription(this.getDescription());
-    		channelInformationVO.setProgrammes(null);
-    	}
-    	catch(Exception exception)
-    	{
-    		exception.printStackTrace();
-    	}
+    	ChannelInformationVO channelInformationVO = new ChannelInformationVO();
+		channelInformationVO.setName(this.getName());
+		channelInformationVO.setCategory(this.getCategory());
+		channelInformationVO.setType(this.getType());
+		channelInformationVO.setTitle(this.getTitle());
+		channelInformationVO.setLogoMedia(null);
+		channelInformationVO.setDescription(this.getDescription());
+		channelInformationVO.setProgrammes(null);
     	
     	return channelInformationVO;
     }

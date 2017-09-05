@@ -12,7 +12,7 @@ public class MediaInformationVO
 
     private String storeType;
 
-    private String locaion;
+    private String location;
 
     private Long size;
 
@@ -60,14 +60,14 @@ public class MediaInformationVO
         this.storeType = storeType == null ? null : storeType.trim();
     }
 
-    public String getLocaion() 
+    public String getLocation() 
     {
-        return locaion;
+        return location;
     }
 
-    public void setLocaion(String locaion) 
+    public void setLocation(String location) 
     {
-        this.locaion = locaion == null ? null : locaion.trim();
+        this.location = location == null ? null : location.trim();
     }
 
     public Long getSize() 

@@ -114,24 +114,15 @@ public class StationInformationPO {
      */
     public StationInformationVO converToVO()
     {
-    	StationInformationVO stationInformationVO = null;
-    	
-    	try
-    	{
-    		stationInformationVO = new StationInformationVO();
-    		stationInformationVO.setName(this.getName());
-    		stationInformationVO.setCategory(this.getCategory());
-    		stationInformationVO.setType(this.getType());
-    		stationInformationVO.setTitle(this.getTitle());
-    		stationInformationVO.setLogoMedia(null);
-    		stationInformationVO.setDescription(this.getDescription());
-    		stationInformationVO.setChannels(null);
-    	}
-    	catch(Exception exception)
-    	{
-    		exception.printStackTrace();
-    	}
-    	
+    	StationInformationVO stationInformationVO = new StationInformationVO();
+		stationInformationVO.setName(this.getName());
+		stationInformationVO.setCategory(this.getCategory());
+		stationInformationVO.setType(this.getType());
+		stationInformationVO.setTitle(this.getTitle());
+		stationInformationVO.setLogoMedia(null);
+		stationInformationVO.setDescription(this.getDescription());
+		stationInformationVO.setChannels(null);
+
     	return stationInformationVO;
     }
 }
