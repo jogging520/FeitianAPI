@@ -1,17 +1,14 @@
 package com.northsky.service;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.northsky.dao.MediaInformationDetailPOMapper;
-import com.northsky.dao.MediaInformationPOMapper;
-import com.northsky.model.po.MediaInformationDetailPO;
-import com.northsky.model.po.MediaInformationPO;
+import com.northsky.domain.MediaDomain;
 import com.northsky.model.vo.MediaInformationVO;
+import com.northsky.model.vo.ServiceVO;
 
 @Service 
 public class MediaService 
@@ -19,47 +16,40 @@ public class MediaService
 	private Logger logger = Logger.getLogger(getClass());
 	
 	@Autowired
-	private MediaInformationPOMapper mediaInformationPOMapper;
-	@Autowired
-	private MediaInformationDetailPOMapper mediaInformationDetailPOMapper;
+	private MediaDomain mediaDomain;
 	
-	public MediaInformationVO getMedia(int mediaId)
+	private ServiceVO serviceVO = null;
+	
+	public ServiceVO getMedia(int mediaId)
 	{
 		if(mediaId <= 0)
 			return null;
 		
 		MediaInformationVO mediaInformationVO = null;
-		MediaInformationPO mediaInformationPO = null;
-		List<MediaInformationDetailPO> mediaInformationDetailPOs = null;
 		
 		try
     	{
-			if(mediaInformationPOMapper == null)
+			serviceVO = new ServiceVO();
+			//TODO 按统一的格式来命名域
+			serviceVO.setHeaderRequestDomain("APP");
+			serviceVO.setHeaderResponseDomain("SERVER");
+			
+			if(mediaDomain == null)
 				return null;
 			
-			if(mediaInformationDetailPOMapper == null)
-				return null;
-			
-			mediaInformationPO = mediaInformationPOMapper.selectByPrimaryKey(mediaId);
-			
-			if(mediaInformationPO == null)
-				return null;
-			
-			mediaInformationVO = mediaInformationPO.convertToVO();
-			mediaInformationVO.setDetails(new HashMap<String, String>());
-			
-			mediaInformationDetailPOs = mediaInformationDetailPOMapper.selectByMediaId(mediaId);
-			
-			for(MediaInformationDetailPO mediaInformationDetailPO: mediaInformationDetailPOs)
-			{
-				mediaInformationVO.getDetails().put(mediaInformationDetailPO.getAttribute(), mediaInformationDetailPO.getValue());
-			}			
+			mediaInformationVO = mediaDomain.getMedia(mediaId);
+		
+			serviceVO.setBody(mediaInformationVO);
+			serviceVO.setHeaderResponseTime(new Date());
     	}
     	catch(Exception exception)
     	{
     		exception.printStackTrace();
+    		serviceVO.setHeaderResponseCode("2999");
+    		serviceVO.setHeaderResponseDescription("Error");
+    		serviceVO.setHeaderRequestTime(new Date());
     	}
 		
-		return mediaInformationVO;
+		return serviceVO;
 	}
 }

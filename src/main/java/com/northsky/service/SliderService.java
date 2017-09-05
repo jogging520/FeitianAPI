@@ -1,78 +1,59 @@
 package com.northsky.service;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.northsky.dao.MediaInformationPOMapper;
-import com.northsky.dao.SliderInformationPOMapper;
-import com.northsky.model.po.MediaInformationPO;
-import com.northsky.model.po.SliderInformationPO;
+import com.northsky.domain.SliderDomain;
+import com.northsky.model.vo.ServiceVO;
 import com.northsky.model.vo.SliderInformationVO;
 
 @Service 
 public class SliderService 
 {
-	@Autowired
-	private SliderInformationPOMapper sliderInformationPOMapper;
-	@Autowired
-	private MediaInformationPOMapper mediaInformationPOMapper;
+	private Logger logger = Logger.getLogger(getClass());
 	
-	public List<SliderInformationVO> getSlider(String category, String type)
+	@Autowired
+	private SliderDomain sliderDomain;
+	
+	private ServiceVO serviceVO = null;
+	
+	public ServiceVO getSlider(String category, String type)
 	{
+		if(category == null || category.equals(""))
+			return null;
+		
 		if(type == null || type.equals(""))
 			return null;
 		
 		List<SliderInformationVO> sliderInformationVOs = null;
-		List<SliderInformationPO> sliderInformationPOs = null;
-		SliderInformationVO sliderInformationVO = null;
 		
 		try
     	{
-			if(sliderInformationPOMapper == null)
+			serviceVO = new ServiceVO();
+			//TODO 按统一的格式来命名域
+			serviceVO.setHeaderRequestDomain("APP");
+			serviceVO.setHeaderResponseDomain("SERVER");
+			
+			if(sliderDomain == null)
 				return null;
 			
-			if(mediaInformationPOMapper == null)
-				return null;
-			
-			sliderInformationPOs = sliderInformationPOMapper.selectByType(category, type);
-			
-			if(sliderInformationPOs == null)
-				return null;
-			
-			sliderInformationVOs = new ArrayList<SliderInformationVO>();
-			
-			for(SliderInformationPO sliderInformationPO: sliderInformationPOs)
-			{
-				sliderInformationVO = sliderInformationPO.converToVO();
-				sliderInformationVO.setMedia(getMediaLocation(sliderInformationPO.getMediaId()));
-				
-				sliderInformationVOs.add(sliderInformationVO);
-			}		
+			sliderInformationVOs = sliderDomain.getSlider(category, type);
+		
+			serviceVO.setBody(sliderInformationVOs);
+			serviceVO.setHeaderResponseTime(new Date());
     	}
-		catch(Exception exception)
+    	catch(Exception exception)
     	{
     		exception.printStackTrace();
+    		serviceVO.setHeaderResponseCode("2999");
+    		serviceVO.setHeaderResponseDescription("Error");
+    		serviceVO.setHeaderRequestTime(new Date());
     	}
 		
-		return sliderInformationVOs;	
-	}
-	
-	private String getMediaLocation(int mediaId)
-	{
-		if(mediaId <= 0)
-			return null;
-		
-		if(mediaInformationPOMapper == null)
-			return null;
-		
-		MediaInformationPO mediaInformationPO = mediaInformationPOMapper.selectByPrimaryKey(mediaId);
-		
-		if(mediaInformationPO == null)
-			return null;
-		
-		return mediaInformationPO.getLocaion();
+		return serviceVO;
 	}
 }

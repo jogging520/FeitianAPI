@@ -18,7 +18,7 @@ public class FavouriteService
 	
 	private ServiceVO serviceVO = null;
 	
-	public ServiceVO getMedia(int partyId, String type)
+	public ServiceVO getFavourite(int partyId, String type)
 	{
 		List<FavouriteRecordVO> favouriteRecordVOs = null;
 		
@@ -40,7 +40,7 @@ public class FavouriteService
 			
 			//get类的如果没有exception，都按业务级成功处理。如果有exception，那么就根据exception类型来顶code和desc。
 			//对外抛出的异常和内部的异常有所区分，内部更加详细。
-			//domain及以下都不catchexception，由service层来catch
+			//domain及以下都不catchexception，由service层来catch，对于domain层的事务，在catch后再throw
 			favouriteRecordVOs = favouriteDomain.getMedia(partyId, type);
 			
 			serviceVO.setBody(favouriteRecordVOs);
