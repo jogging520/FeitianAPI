@@ -10,8 +10,8 @@ import com.northsky.dao.StationInformationPOMapper;
 import com.northsky.model.po.StationInformationPO;
 import com.northsky.model.vo.MediaInformationVO;
 import com.northsky.model.vo.PlayListVO;
-import com.northsky.service.MediaService;
-import com.northsky.service.PlayListService;
+import com.northsky.service.impl.MediaService;
+import com.northsky.service.impl.PlayListService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)

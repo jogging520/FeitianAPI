@@ -1,4 +1,4 @@
-package com.northsky.domain;
+package com.northsky.domain.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import com.northsky.dao.MediaInformationPOMapper;
 import com.northsky.dao.ProgrammeInformationPOMapper;
 import com.northsky.dao.StationChannelRelationPOMapper;
 import com.northsky.dao.StationInformationPOMapper;
+import com.northsky.domain.IPlayListDomain;
 import com.northsky.model.po.ChannelInformationPO;
 import com.northsky.model.po.ChannelProgrammeRelationPO;
 import com.northsky.model.po.MediaInformationPO;
@@ -25,7 +26,7 @@ import com.northsky.model.vo.ProgrammeInformationVO;
 import com.northsky.model.vo.StationInformationVO;
 
 @Component
-public class PlayListDomain 
+public class PlayListDomain implements IPlayListDomain
 {
 	private Logger logger = Logger.getLogger(getClass());
 	
@@ -44,7 +45,7 @@ public class PlayListDomain
 	
 	private static final int status = 1;
 
-	
+	@Override
 	public PlayListVO getPlaylist() throws Exception
 	{
 		PlayListVO playListVO = null;

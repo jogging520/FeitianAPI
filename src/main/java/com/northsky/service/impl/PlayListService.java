@@ -1,4 +1,4 @@
-package com.northsky.service;
+package com.northsky.service.impl;
 
 import java.util.Date;
 
@@ -6,20 +6,22 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.northsky.domain.PlayListDomain;
+import com.northsky.domain.IPlayListDomain;
 import com.northsky.model.vo.PlayListVO;
 import com.northsky.model.vo.ServiceVO;
+import com.northsky.service.IPlayListService;
 
 @Service 
-public class PlayListService 
+public class PlayListService implements IPlayListService
 {	
 	private Logger logger = Logger.getLogger(getClass());
 	
 	@Autowired
-	private PlayListDomain playListDomain;
+	private IPlayListDomain playListDomain;
 	
 	private ServiceVO serviceVO = null;
 	
+	@Override
 	public ServiceVO getMedia()
 	{
 		PlayListVO playListVO = null;

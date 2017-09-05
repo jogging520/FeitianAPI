@@ -1,4 +1,4 @@
-package com.northsky.service;
+package com.northsky.service.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -6,18 +6,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.northsky.domain.FavouriteDomain;
+import com.northsky.domain.IFavouriteDomain;
 import com.northsky.model.vo.FavouriteRecordVO;
 import com.northsky.model.vo.ServiceVO;
+import com.northsky.service.IFavouriteService;
 
 @Service 
-public class FavouriteService 
+public class FavouriteService implements IFavouriteService
 {
 	@Autowired
-	private FavouriteDomain favouriteDomain;
+	private IFavouriteDomain favouriteDomain;
 	
 	private ServiceVO serviceVO = null;
 	
+	@Override
 	public ServiceVO getFavourite(int partyId, String type)
 	{
 		List<FavouriteRecordVO> favouriteRecordVOs = null;

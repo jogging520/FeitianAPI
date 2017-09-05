@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.northsky.model.vo.MediaInformationVO;
-import com.northsky.service.MediaService;
+import com.northsky.service.impl.MediaService;
 @Controller
 public class MediaController {
 	@Autowired

@@ -1,4 +1,4 @@
-package com.northsky.domain;
+package com.northsky.domain.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,18 +8,20 @@ import org.springframework.stereotype.Component;
 
 import com.northsky.dao.FavouriteRecordPOMapper;
 import com.northsky.dao.MediaInformationPOMapper;
+import com.northsky.domain.IFavouriteDomain;
 import com.northsky.model.po.FavouriteRecordPO;
 import com.northsky.model.po.MediaInformationPO;
 import com.northsky.model.vo.FavouriteRecordVO;
 
 @Component
-public class FavouriteDomain 
+public class FavouriteDomain implements IFavouriteDomain
 {
 	@Autowired
 	private FavouriteRecordPOMapper favouriteRecordPOMapper;
 	@Autowired
 	private MediaInformationPOMapper mediaInformationPOMapper;
 	
+	@Override
 	public List<FavouriteRecordVO> getMedia(int partyId, String type) throws Exception
 	{
 		if(partyId <= 0)

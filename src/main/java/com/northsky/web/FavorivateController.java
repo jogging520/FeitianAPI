@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.northsky.model.vo.FavouriteRecordVO;
-import com.northsky.service.FavouriteService;
+import com.northsky.service.impl.FavouriteService;
 @Controller
 public class FavorivateController {
 	@Autowired

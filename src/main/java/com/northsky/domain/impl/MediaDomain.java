@@ -1,4 +1,4 @@
-package com.northsky.domain;
+package com.northsky.domain.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,12 +9,13 @@ import org.springframework.stereotype.Component;
 
 import com.northsky.dao.MediaInformationDetailPOMapper;
 import com.northsky.dao.MediaInformationPOMapper;
+import com.northsky.domain.IMediaDomain;
 import com.northsky.model.po.MediaInformationDetailPO;
 import com.northsky.model.po.MediaInformationPO;
 import com.northsky.model.vo.MediaInformationVO;
 
 @Component
-public class MediaDomain 
+public class MediaDomain implements IMediaDomain
 {
 	private Logger logger = Logger.getLogger(getClass());
 	
@@ -23,6 +24,7 @@ public class MediaDomain
 	@Autowired
 	private MediaInformationDetailPOMapper mediaInformationDetailPOMapper;
 	
+	@Override
 	public MediaInformationVO getMedia(int mediaId) throws Exception
 	{
 		if(mediaId <= 0)

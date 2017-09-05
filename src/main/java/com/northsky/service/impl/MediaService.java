@@ -1,35 +1,33 @@
-package com.northsky.service;
+package com.northsky.service.impl;
 
 import java.util.Date;
-import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.northsky.domain.SliderDomain;
+import com.northsky.domain.IMediaDomain;
+import com.northsky.model.vo.MediaInformationVO;
 import com.northsky.model.vo.ServiceVO;
-import com.northsky.model.vo.SliderInformationVO;
+import com.northsky.service.IMediaService;
 
 @Service 
-public class SliderService 
+public class MediaService implements IMediaService
 {
 	private Logger logger = Logger.getLogger(getClass());
 	
 	@Autowired
-	private SliderDomain sliderDomain;
+	private IMediaDomain mediaDomain;
 	
 	private ServiceVO serviceVO = null;
 	
-	public ServiceVO getSlider(String category, String type)
+	@Override
+	public ServiceVO getMedia(int mediaId)
 	{
-		if(category == null || category.equals(""))
+		if(mediaId <= 0)
 			return null;
 		
-		if(type == null || type.equals(""))
-			return null;
-		
-		List<SliderInformationVO> sliderInformationVOs = null;
+		MediaInformationVO mediaInformationVO = null;
 		
 		try
     	{
@@ -38,12 +36,12 @@ public class SliderService
 			serviceVO.setHeaderRequestDomain("APP");
 			serviceVO.setHeaderResponseDomain("SERVER");
 			
-			if(sliderDomain == null)
+			if(mediaDomain == null)
 				return null;
 			
-			sliderInformationVOs = sliderDomain.getSlider(category, type);
+			mediaInformationVO = mediaDomain.getMedia(mediaId);
 		
-			serviceVO.setBody(sliderInformationVOs);
+			serviceVO.setBody(mediaInformationVO);
 			serviceVO.setHeaderResponseTime(new Date());
     	}
     	catch(Exception exception)

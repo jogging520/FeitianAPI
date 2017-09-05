@@ -1,4 +1,4 @@
-package com.northsky.domain;
+package com.northsky.domain.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,18 +8,20 @@ import org.springframework.stereotype.Component;
 
 import com.northsky.dao.MediaInformationPOMapper;
 import com.northsky.dao.SliderInformationPOMapper;
+import com.northsky.domain.ISliderDomain;
 import com.northsky.model.po.MediaInformationPO;
 import com.northsky.model.po.SliderInformationPO;
 import com.northsky.model.vo.SliderInformationVO;
 
 @Component
-public class SliderDomain 
+public class SliderDomain implements ISliderDomain
 {
 	@Autowired
 	private SliderInformationPOMapper sliderInformationPOMapper;
 	@Autowired
 	private MediaInformationPOMapper mediaInformationPOMapper;
 	
+	@Override
 	public List<SliderInformationVO> getSlider(String category, String type) throws Exception
 	{
 		if(type == null || type.equals(""))
