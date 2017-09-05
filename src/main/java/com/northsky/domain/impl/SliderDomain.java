@@ -68,6 +68,6 @@ public class SliderDomain implements ISliderDomain
 		if(mediaInformationPO == null)
 			return null;
 		
-		return mediaInformationPO.getLocaion();
+		return mediaInformationPO.getLocation();
 	}
 }

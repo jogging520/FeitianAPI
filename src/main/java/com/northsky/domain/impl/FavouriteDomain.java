@@ -92,10 +92,14 @@ public class FavouriteDomain implements IFavouriteDomain
 			{
 				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			}
+			
+			result = true;
 		}
 		catch(Exception exception)
 		{
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			
+			throw exception;
 		}
 		
 		return result;

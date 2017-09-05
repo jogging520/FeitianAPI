@@ -133,6 +133,6 @@ public class PlayListDomain implements IPlayListDomain
 		if(mediaInformationPO == null)
 			return null;
 		
-		return mediaInformationPO.getLocaion();
+		return mediaInformationPO.getLocation();
 	}
 }
