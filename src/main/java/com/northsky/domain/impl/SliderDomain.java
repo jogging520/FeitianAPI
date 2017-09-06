@@ -30,6 +30,7 @@ public class SliderDomain implements ISliderDomain
 		List<SliderInformationVO> sliderInformationVOs = null;
 		List<SliderInformationPO> sliderInformationPOs = null;
 		SliderInformationVO sliderInformationVO = null;
+		String location = null;		
 				
 		if(sliderInformationPOMapper == null)
 			return null;
@@ -47,7 +48,13 @@ public class SliderDomain implements ISliderDomain
 		for(SliderInformationPO sliderInformationPO: sliderInformationPOs)
 		{
 			sliderInformationVO = sliderInformationPO.converToVO();
-			sliderInformationVO.setMedia(getMediaLocation(sliderInformationPO.getMediaId()));
+			
+			location = getMediaLocation(sliderInformationPO.getMediaId());
+			
+			if(location == null)
+				continue;
+			
+			sliderInformationVO.setMedia(location);
 			
 			sliderInformationVOs.add(sliderInformationVO);
 		}	

@@ -12,6 +12,7 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import com.northsky.dao.FavouriteRecordPOMapper;
 import com.northsky.dao.MediaInformationPOMapper;
 import com.northsky.dao.RecordSequencePOMapper;
+import com.northsky.dao.SystemPartyPOMapper;
 import com.northsky.domain.IFavouriteDomain;
 import com.northsky.model.po.FavouriteRecordPO;
 import com.northsky.model.po.MediaInformationPO;
@@ -24,6 +25,8 @@ public class FavouriteDomain implements IFavouriteDomain
 	private FavouriteRecordPOMapper favouriteRecordPOMapper;
 	@Autowired
 	private MediaInformationPOMapper mediaInformationPOMapper;
+	@Autowired
+	private SystemPartyPOMapper systemPartyPOMapper;
 	@Autowired
 	private RecordSequencePOMapper recordSequencePOMapper;
 	
@@ -66,10 +69,12 @@ public class FavouriteDomain implements IFavouriteDomain
 	
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
-	public boolean appendFavourite(FavouriteRecordVO favouriteRecordVO) throws Exception
+	public boolean enshrine(FavouriteRecordVO favouriteRecordVO) throws Exception
 	{
 		boolean result = false;
 		FavouriteRecordPO favouriteRecordPO = null;
+		int mediaId = 0;
+		int partyId = 0;
 		long favouriteId = 0L;
 		
 		try
@@ -82,15 +87,29 @@ public class FavouriteDomain implements IFavouriteDomain
 			
 			favouriteRecordPO = favouriteRecordVO.converToPO();
 			
-			favouriteId = recordSequencePOMapper.nextval();
-			
+			favouriteId = recordSequencePOMapper.nextval();			
 			favouriteRecordPO.setFavouriteId(favouriteId);
+			mediaId = getMediaId(favouriteRecordVO.getMedia());
 			
-			favouriteRecordPO.setMediaId(getMediaId(favouriteRecordVO.getMedia()));
+			if(mediaId <= 0)
+				return result;
 			
-			if(favouriteRecordPOMapper.insert(favouriteRecordPO) < 0)
+			favouriteRecordPO.setMediaId(mediaId);
+			
+			partyId = getPartyId(favouriteRecordVO.getPartyName());
+			
+			if(partyId <= 0)
+				return result;
+			
+			if(favouriteRecordPOMapper.selectByMedia(partyId, mediaId, favouriteRecordVO.getType()) > 0)
+			{
+				return result;
+			}
+			
+			if(favouriteRecordPOMapper.insert(favouriteRecordPO) <= 0)
 			{
 				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+				return result;
 			}
 			
 			result = true;
@@ -130,5 +149,16 @@ public class FavouriteDomain implements IFavouriteDomain
 			return -1;
 		
 		return mediaInformationPOMapper.selectByLocation(location);
+	}
+	
+	private int getPartyId(String partyName) throws Exception
+	{
+		if(partyName == null || partyName.equals(""))
+			return -1;
+		
+		if(systemPartyPOMapper == null)
+			return -1;
+		
+		return systemPartyPOMapper.selectByName(partyName);
 	}
 }

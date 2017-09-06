@@ -60,6 +60,7 @@ public class PlayListDomain implements IPlayListDomain
 		ChannelInformationPO channelInformationPO = null;
 		ProgrammeInformationVO programmeInformationVO = null;
 		ProgrammeInformationPO programmeInformationPO = null;
+		String location = null;
 				
 		if(stationInformationPOMapper == null)
 			return playListVO;
@@ -105,8 +106,18 @@ public class PlayListDomain implements IPlayListDomain
 				{
 					programmeInformationPO = programmeInformationPOMapper.selectByPrimaryKey(channelProgrammeRelationPO.getProgrammeId());
 					programmeInformationVO = programmeInformationPO.converToVO();
-					programmeInformationVO.setMedia(getMediaLocation(programmeInformationPO.getMediaId()));
-					programmeInformationVO.setSnapshotMedia(getMediaLocation(programmeInformationPO.getSnapshotMediaId()));
+					
+					location = getMediaLocation(programmeInformationPO.getMediaId());					
+					if(location == null)
+						continue;
+					
+					programmeInformationVO.setMedia(location);
+					
+					location = getMediaLocation(programmeInformationPO.getSnapshotMediaId());
+					if(location == null)
+						continue;
+					
+					programmeInformationVO.setSnapshotMedia(location);
 					
 					programmeInformationVOs.add(programmeInformationVO);
 				}

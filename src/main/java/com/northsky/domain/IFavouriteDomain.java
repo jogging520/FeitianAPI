@@ -8,5 +8,5 @@ public interface IFavouriteDomain
 {
 	public List<FavouriteRecordVO> getFavourite(int partyId, String type) throws Exception;
 	
-	public boolean appendFavourite(FavouriteRecordVO favouriteRecordVO) throws Exception;
+	public boolean enshrine(FavouriteRecordVO favouriteRecordVO) throws Exception;
 }

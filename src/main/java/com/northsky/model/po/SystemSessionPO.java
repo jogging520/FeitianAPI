@@ -2,8 +2,8 @@ package com.northsky.model.po;
 
 import java.util.Date;
 
-public class SystemLoginRecordPO {
-    private Long loginId;
+public class SystemSessionPO {
+    private Long sessionId;
 
     private Integer partyId;
 
@@ -11,18 +11,20 @@ public class SystemLoginRecordPO {
 
     private Integer organizationId;
 
-    private Integer action;
+    private Integer status;
 
-    private Date statusTime;
+    private Date loginTime;
+
+    private Date logoutTime;
 
     private String description;
 
-    public Long getLoginId() {
-        return loginId;
+    public Long getSessionId() {
+        return sessionId;
     }
 
-    public void setLoginId(Long loginId) {
-        this.loginId = loginId;
+    public void setSessionId(Long sessionId) {
+        this.sessionId = sessionId;
     }
 
     public Integer getPartyId() {
@@ -49,20 +51,28 @@ public class SystemLoginRecordPO {
         this.organizationId = organizationId;
     }
 
-    public Integer getAction() {
-        return action;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setAction(Integer action) {
-        this.action = action;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public Date getStatusTime() {
-        return statusTime;
+    public Date getLoginTime() {
+        return loginTime;
     }
 
-    public void setStatusTime(Date statusTime) {
-        this.statusTime = statusTime;
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    public Date getLogoutTime() {
+        return logoutTime;
+    }
+
+    public void setLogoutTime(Date logoutTime) {
+        this.logoutTime = logoutTime;
     }
 
     public String getDescription() {

@@ -9,6 +9,10 @@ public class SystemPartyPO {
 
     private String password;
 
+    private String email;
+
+    private String phone;
+
     private String category;
 
     private String type;
@@ -43,6 +47,22 @@ public class SystemPartyPO {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
     public String getCategory() {

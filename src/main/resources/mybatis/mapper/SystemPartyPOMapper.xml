@@ -5,6 +5,8 @@
     <id column="party_id" jdbcType="INTEGER" property="partyId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="category" jdbcType="VARCHAR" property="category" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -12,8 +14,12 @@
     <result column="status_time" jdbcType="TIMESTAMP" property="statusTime" />
     <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
+  <resultMap id="IdResultMap" type="java.lang.Integer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+  </resultMap>
   <sql id="Base_Column_List">
-    party_id, name, password, category, type, status, create_time, status_time, description
+    party_id, name, password, email, phone, category, type, status, create_time, status_time, 
+    description
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -21,19 +27,24 @@
     from system_party
     where party_id = #{partyId,jdbcType=INTEGER}
   </select>
+  <select id="selectByName" resultMap="IdResultMap">
+    select party_id as id
+    from system_party
+    where name = #{0}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from system_party
     where party_id = #{partyId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.northsky.model.po.SystemPartyPO">
     insert into system_party (party_id, name, password, 
-      category, type, status, 
-      create_time, status_time, description
-      )
+      email, phone, category, 
+      type, status, create_time, 
+      status_time, description)
     values (#{partyId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{category,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{statusTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}
-      )
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{statusTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.northsky.model.po.SystemPartyPO">
     insert into system_party
@@ -46,6 +57,12 @@
       </if>
       <if test="password != null">
         password,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
       </if>
       <if test="category != null">
         category,
@@ -76,6 +93,12 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
       <if test="category != null">
         #{category,jdbcType=VARCHAR},
       </if>
@@ -105,6 +128,12 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
       <if test="category != null">
         category = #{category,jdbcType=VARCHAR},
       </if>
@@ -130,6 +159,8 @@
     update system_party
     set name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
       category = #{category,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},

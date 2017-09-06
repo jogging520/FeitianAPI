@@ -6,7 +6,7 @@ import com.northsky.model.po.FavouriteRecordPO;
 
 public class FavouriteRecordVO
 {
-    private Integer partyId;
+    private String partyName;
 
     private String media;
 
@@ -16,12 +16,12 @@ public class FavouriteRecordVO
 
     private String description;
 
-    public Integer getPartyId() {
-        return partyId;
+    public String getPartyName() {
+        return partyName;
     }
 
-    public void setPartyId(Integer partyId) {
-        this.partyId = partyId;
+    public void setPartyId(String partyName) {
+        this.partyName = partyName;
     }
 
     public String getType() {
@@ -60,7 +60,6 @@ public class FavouriteRecordVO
 	{
 		FavouriteRecordPO favouriteRecordPO = new FavouriteRecordPO();
 		
-		favouriteRecordPO.setPartyId(this.getPartyId());
 		favouriteRecordPO.setType(this.getType());
 		favouriteRecordPO.setLast(this.getLast());
 		favouriteRecordPO.setStatus(1);

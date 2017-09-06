@@ -12,6 +12,9 @@
     <result column="status_time" jdbcType="TIMESTAMP" property="statusTime" />
     <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
+  <resultMap id="CountResultMap" type="java.lang.Integer">
+    <id column="row_count" jdbcType="INTEGER" property="rowCount" />
+  </resultMap>
   <sql id="Base_Column_List">
     favourite_id, party_id, media_id, type, last, status, create_time, status_time, description
   </sql>
@@ -27,6 +30,13 @@
     from favourite_record
     where party_id = #{0} and
     	  upper(type) = #{1} 
+  </select>
+  <select id="selectByMedia" resultMap="CountResultMap">
+    select count(1) as row_count
+    from favourite_record
+    where party_id = #{0} and
+    	  media_id = #{1} and
+    	  upper(type) = #{2} 
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from favourite_record

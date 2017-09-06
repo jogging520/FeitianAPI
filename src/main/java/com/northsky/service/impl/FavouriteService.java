@@ -59,7 +59,7 @@ public class FavouriteService implements IFavouriteService
 		return serviceVO;
 	}
 	
-	public boolean appendFavourite(FavouriteRecordVO favouriteRecordVO)
+	public boolean keep(FavouriteRecordVO favouriteRecordVO)
 	{
 		boolean result = false;
 		
